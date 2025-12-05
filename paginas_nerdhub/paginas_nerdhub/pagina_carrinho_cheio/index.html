@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Nerd Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: #dfdede;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        a, button, input, select, h1, h2, h3, h4, h5, * {
+            text-decoration: none;
+            background: none;
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container principal mantendo layout original -->
+    <div class="page-container">
+        <!-- HEADER (posicionamento absoluto mantido) -->
+        <!-- HEADER (posicionamento absoluto mantido) -->
+<div class="header">
+    <div class="header-top-bar"></div>
+    <div class="header-bottom-bar"></div>
+    
+    <div class="logo-container">
+        <div class="logo">NerdHub</div>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="O que você está procurando?">
+    </div>
+    
+    <div class="header-icons">
+        <img class="icon-cart" src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho">
+        <img class="icon-profile" src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Perfil">
+    </div>
+    
+    <nav class="navigation">
+        <div class="nav-item">Principal</div>
+        <div class="nav-item">Sobre Nós</div>
+        <div class="nav-item">Suporte</div>
+    </nav>
+</div>
+
+        <!-- MAIN CONTENT (posicionamento absoluto mantido) -->
+        <div class="main-content">
+            <!-- Produto em Destaque (posição original) -->
+            <div class="featured-product">
+                <div class="product-card">
+                    <div class="product-image-section">
+                        <img class="brand-logo" src="play-station9.png" alt="PlayStation">
+                        <img class="product-image-large" src="controle-sem-fio-ps-5-dualsense-1598897393-m0.png" alt="Controle PS5">
+                    </div>
+                    
+                    <div class="product-details">
+                        <div class="brand-name">Sony</div>
+                        <h1 class="product-title">PlayStation DualSense Controle sem fio – Branco - 3005767</h1>
+                        
+                        <div class="pricing-info">
+                            <div class="price-left">
+                                <div class="price-label">preço a vista no pix:</div>
+                                <div class="price-main">R$ 399,49</div>
+                            </div>
+                            
+                            <div class="price-right">
+                                <div class="payment-detail">
+                                    <span class="payment-label">com desconto no pix:</span>
+                                    <span class="payment-value">R$ 464,07</span>
+                                </div>
+                                <div class="payment-detail">
+                                    <span class="payment-label">Parcelado no cartão sem juros:</span>
+                                    <span class="payment-value">R$ 499,00</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quantity-selector">
+                            <div class="stepper">
+                                <button class="stepper-btn decrement">-</button>
+                                <div class="separator"></div>
+                                <button class="stepper-btn increment">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Itens do Carrinho (scroll melhorado) -->
+            <div class="cart-items-container">
+                <div class="cart-items-wrapper">
+                    <!-- Item 1 -->
+                    <div class="cart-item">
+                        <div class="item-brand">
+                            <img src="play-station7.png" alt="PlayStation">
+                        </div>
+                        <div class="item-image">
+                            <img src="_51-pme-lg-ek-ml-ac-sx-679-20.png" alt="Controle PS5">
+                        </div>
+                        <div class="item-info">
+                            <h3>PlayStation DualSense Controle sem fio – Branco</h3>
+                            <div class="item-price">R$ 399,49</div>
+                            <div class="item-quantity-label">QTD PRODUTO 1</div>
+                        </div>
+                        <button class="remove-btn">Remover</button>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="cart-item">
+                        <div class="item-brand">
+                            <img src="xbox0.png" alt="Xbox">
+                        </div>
+                        <div class="item-image">
+                            <img src="_71-q-kdn-oo-6-l-ac-sx-679-20.png" alt="Halo Figure">
+                        </div>
+                        <div class="item-info">
+                            <h3>Pop Halo Infinite Master Chief Vinyl Figure</h3>
+                            <div class="item-price">R$ 399,49</div>
+                            <div class="item-quantity-label">QTD PRODUTO 2</div>
+                        </div>
+                        <button class="remove-btn">Remover</button>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="cart-item">
+                        <div class="item-brand">
+                            <img src="xbox1.png" alt="Xbox">
+                        </div>
+                        <div class="item-image">
+                            <img src="_618-o-os-ly-pjs-ac-sx-679-10.png" alt="Headset Xbox">
+                        </div>
+                        <div class="item-info">
+                            <h3>Headset Xbox - Sem fio</h3>
+                            <div class="item-price">R$ 269,93</div>
+                            <div class="item-quantity-label">QTD PRODUTO 1</div>
+                        </div>
+                        <button class="remove-btn">Remover</button>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="cart-item">
+                        <div class="item-brand">
+                            <img src="marvel0.png" alt="Marvel">
+                        </div>
+                        <div class="item-image">
+                            <img src="_1408873-800-auto0.png" alt="Captain America">
+                        </div>
+                        <div class="item-info">
+                            <h3>Pop! Captain America (Sam Wilson) (Flying)</h3>
+                            <div class="item-price">R$ 269,93</div>
+                            <div class="item-quantity-label">QTD PRODUTO 1</div>
+                        </div>
+                        <button class="remove-btn">Remover</button>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="cart-item">
+                        <div class="item-brand">
+                            <img src="disney0.png" alt="Disney">
+                        </div>
+                        <div class="item-image">
+                            <img src="_618-lk-yll-7-kl-ac-sx-300-sy-300-ql-70-ml-2-10.png" alt="Stitch">
+                        </div>
+                        <div class="item-info">
+                            <h3>Pop Lilo and Stitch Smiling Seated Stitch Vinyl Figure</h3>
+                            <div class="item-price">R$ 179,00</div>
+                            <div class="item-quantity-label">QTD PRODUTO 2</div>
+                        </div>
+                        <button class="remove-btn">Remover</button>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="cart-item">
+                        <div class="item-brand">
+                            <img src="play-station8.png" alt="PlayStation">
+                        </div>
+                        <div class="item-image">
+                            <img src="_81-snw-iy-j-di-l-ac-sx-679-10.png" alt="Astro Bot">
+                        </div>
+                        <div class="item-info">
+                            <h3>ASTRO BOT – PS5</h3>
+                            <div class="item-price">R$ 269,93</div>
+                            <div class="item-quantity-label">QTD PRODUTO 1</div>
+                        </div>
+                        <button class="remove-btn">Remover</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produtos Similares -->
+            <div class="similar-products">
+                <div class="section-title">Produtos Similares:</div>
+                <div class="products-carousel">
+                    <!-- Produto 1 -->
+                    <div class="product-card-small">
+                        <div class="discount-badge">20% OFF</div>
+                        <div class="card-background"></div>
+                        <img class="product-img" src="dualsense-3-zmwab-5-uu-82-10.png" alt="Controle PS5">
+                        <img class="brand-icon" src="play-station0.png" alt="PlayStation">
+                        <h4>Controle PS5 Edição Limitada Aniversário de 30 Anos - Sony</h4>
+                        <div class="product-price">R$ 1.349,99</div>
+                    </div>
+
+                    <!-- Produto 2 -->
+                    <div class="product-card-small">
+                        <div class="discount-badge">20% OFF</div>
+                        <div class="card-background"></div>
+                        <img class="product-img" src="controle-sony-dualsense-ps-5-sem-fio-chroma-indigo-1762779753-m0.png" alt="Controle PS5">
+                        <img class="brand-icon" src="play-station1.png" alt="PlayStation">
+                        <h4>Console PlayStation®5 Pro</h4>
+                        <div class="product-price">R$ 371,91</div>
+                    </div>
+
+                    <!-- Produto 3 -->
+                    <div class="product-card-small">
+                        <div class="discount-badge">20% OFF</div>
+                        <div class="card-background"></div>
+                        <img class="product-img" src="controle-sem-fio-sony-ps-5-dualsense-galactic-purple-3006456-1639498915-m0.png" alt="Controle PS5">
+                        <img class="brand-icon" src="play-station2.png" alt="PlayStation">
+                        <h4>Controle Sony DualSense PS5, Sem Fio Galactic Purple - 3006456</h4>
+                        <div class="product-price">R$ 360,75</div>
+                    </div>
+
+                    <!-- Produto 4 -->
+                    <div class="product-card-small">
+                        <div class="discount-badge">20% OFF</div>
+                        <div class="card-background"></div>
+                        <img class="product-img" src="controle-sem-fio-sony-ps-5-dualsense-starlight-blue-3006454-1639496265-m0.png" alt="Controle PS5">
+                        <img class="brand-icon" src="play-station3.png" alt="PlayStation">
+                        <h4>Controle Sony DualSense PS5, Sem Fio, Starlight Blue</h4>
+                        <div class="product-price">R$ 371,91</div>
+                    </div>
+
+                    <!-- Produto 5 -->
+                    <div class="product-card-small">
+                        <div class="discount-badge">20% OFF</div>
+                        <div class="card-background"></div>
+                        <img class="product-img" src="controle-sony-dualsense-ps-5-sem-fio-midnight-black-1762781772-m0.png" alt="Controle PS5">
+                        <img class="brand-icon" src="play-station4.png" alt="PlayStation">
+                        <h4>Controle Sony DualSense PS5, Sem Fio, Midnight Black</h4>
+                        <div class="product-price">R$ 371,91</div>
+                    </div>
+
+                    <!-- Produto 6 -->
+                    <div class="product-card-small">
+                        <div class="discount-badge">20% OFF</div>
+                        <div class="card-background"></div>
+                        <img class="product-img" src="group-1560.svg" alt="PlayStation Portal">
+                        <img class="brand-icon" src="play-station5.png" alt="PlayStation">
+                        <h4>PlayStation Portal™ Reprodutor Remoto</h4>
+                        <div class="product-price">R$ 1.549,99</div>
+                    </div>
+
+                    <!-- Produto 7 -->
+                    <div class="product-card-small">
+                        <div class="discount-badge">20% OFF</div>
+                        <div class="card-background"></div>
+                        <img class="product-img" src="_51-dfg-52-k-c-l-ac-sy-300-sx-300-ql-70-ml-2-10.png" alt="Console PS5">
+                        <img class="brand-icon" src="play-station6.png" alt="PlayStation">
+                        <h4>Console PlayStation®5 Pro</h4>
+                        <div class="product-price">R$ 6.509,00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER (posicionamento original) -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-sections">
+                    <div class="footer-section">
+                        <h3 class="section-title">Nerd Hub</h3>
+                        <p class="section-text">
+                            Sua loja de confiança para produtos de alta qualidade e<br>
+                            atendimento excepcional.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="section-title">Links Rápidos</h3>
+                        <div class="footer-links">
+                            <div class="footer-link">Principal</div>
+                            <div class="footer-link">Sobre Nós</div>
+                            <div class="footer-link">Loja</div>
+                            <div class="footer-link">Suporte</div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="section-title">Categorias</h3>
+                        <div class="footer-links">
+                            <div class="footer-link">Colecionáveis</div>
+                            <div class="footer-link">Games</div>
+                            <div class="footer-link">Acessórios</div>
+                            <div class="footer-link">Vestuário</div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="section-title">Redes Sociais</h3>
+                        <div class="social-icons">
+                            <div class="social-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+                            </div>
+                            <div class="social-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+                            </div>
+                            <div class="social-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384012.png" alt="Twitter">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-divider"></div>
+                <div class="footer-copyright">
+                    © 2024 Nerd Hub. Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interatividade básica mantendo funcionalidades
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cartItem = this.closest('.cart-item');
+                cartItem.style.opacity = '0.5';
+                setTimeout(() => {
+                    cartItem.remove();
+                }, 300);
+            });
+        });
+
+        // Controle de quantidade
+        const decrementBtn = document.querySelector('.decrement');
+        const incrementBtn = document.querySelector('.increment');
+        const priceElement = document.querySelector('.price-main');
+        
+        let quantity = 1;
+        const basePrice = 399.49;
+        
+        if (decrementBtn && incrementBtn) {
+            decrementBtn.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity--;
+                    updatePrice();
+                }
+            });
+            
+            incrementBtn.addEventListener('click', () => {
+                quantity++;
+                updatePrice();
+            });
+        }
+        
+        function updatePrice() {
+            const total = (basePrice * quantity).toFixed(2);
+            if (priceElement) {
+                priceElement.textContent = `R$ ${total.replace('.', ',')}`;
+            }
+        }
+    </script>
+</body>
+</html>

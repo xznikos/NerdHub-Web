@@ -1,0 +1,730 @@
+      /* Reset */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body {
+        width: 100%;
+        min-height: 100vh;
+        background: #dfdede;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* Container principal */
+      ._13-14-tela-combined {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Header - FIXO NO TOPO */
+      .header {
+        background: #55a143;
+        width: 100%;
+        height: 148px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      
+      .header-top {
+        background: #55a143;
+        width: 100%;
+        height: 74px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+      }
+      
+      .header-bottom {
+        background: #131313;
+        width: 100%;
+        height: 74px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 40px;
+      }
+      
+      .logo {
+        color: #ffffff;
+        font-family: "LuckiestGuy-Regular", sans-serif;
+        font-size: 28px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        white-space: nowrap;
+      }
+      
+      .search-container {
+        position: relative;
+        width: 576px;
+        margin: 0 20px;
+      }
+      
+      .search-bar {
+        background: #ffffff;
+        border-radius: 40px;
+        width: 100%;
+        height: 42px;
+        padding: 0 20px;
+        font-size: 16px;
+        color: #333;
+        border: none;
+        outline: none;
+      }
+      
+      .search-placeholder {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        font-size: 16px;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      
+      .header-icons {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+      }
+      
+      .header-icon {
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        filter: brightness(0) invert(1);
+      }
+      
+      .header-icon:hover {
+        transform: scale(1.1);
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 50px;
+        align-items: center;
+      }
+      
+      .nav-link {
+        color: #ffffff;
+        font-family: "Inter-Regular", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+        white-space: nowrap;
+      }
+      
+      .nav-link:hover {
+        opacity: 0.8;
+      }
+      
+      /* Conteúdo Principal */
+      .main-content {
+        flex: 1;
+        margin-top: 148px;
+        position: relative;
+        min-height: calc(100vh - 148px);
+        padding: 0;
+        overflow: hidden;
+      }
+      
+      /* Background image */
+      .background-container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      
+      .group-367-1-2 {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .frame-296 {
+        background: linear-gradient(
+          180deg,
+          rgba(163, 163, 163, 0.35) 0%,
+          rgba(0, 0, 0, 0.35) 100%
+        );
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      
+      /* Container do card - CORRIGIDO PARA NÃO MUDAR TAMANHO */
+      .card-container {
+        width: 569px;
+        height: calc(100vh - 148px);
+        transition: all 0.5s ease-in-out;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+      }
+      
+      .card-container.login-mode {
+        left: calc(100% - 569px);
+      }
+      
+      .card-green {
+        background: #4c8c3e;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      /* Conteúdo DENTRO do card - FIXO E ESTÁVEL */
+      .card-content-wrapper {
+        width: 100%;
+        max-width: 369px;
+        margin: 0 auto;
+        padding: 40px 30px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+      }
+      
+      /* CONTÊINER PARA OS DOIS CONTEÚDOS - MESMA ALTURA E POSIÇÃO */
+      .card-contents-container {
+        width: 100%;
+        height: auto;
+        position: relative;
+        min-height: 600px; /* ALTURA MÍNIMA FIXA PARA AMBOS */
+      }
+      
+      /* CADASTRO E LOGIN - MESMO TAMANHO E POSIÇÃO */
+      .form-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: opacity 0.3s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 1;
+      }
+      
+      .form-content.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      /* LOGIN - ESCONDIDO POR PADRÃO */
+      .login-content {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .login-content.visible {
+        opacity: 1;
+        pointer-events: all;
+      }
+      
+      /* Logo no topo - TAMANHO FIXO */
+      .logo-section {
+        text-align: center;
+        margin-bottom: 40px;
+        width: 100%;
+        height: 150px; /* ALTURA FIXA */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .logo-image {
+        width: 180px;
+        height: 100px;
+        object-fit: contain;
+        margin-bottom: 15px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        flex-shrink: 0;
+      }
+      
+      .logo-text {
+        color: #ffffff;
+        text-align: center;
+        font-family: "RoundedMplus1CBold-Bold", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        flex-shrink: 0;
+      }
+      
+      /* Título - TAMANHO FIXO */
+      .card-title {
+        color: #ffffff;
+        text-align: center;
+        font-family: "Lunasima-Regular", sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 40px;
+        width: 100%;
+        height: 30px; /* ALTURA FIXA */
+        flex-shrink: 0;
+      }
+      
+      /* Container dos botões sociais - TAMANHO FIXO */
+      .social-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        margin-bottom: 30px;
+        height: 230px; /* ALTURA FIXA (3 botões de 60px + gaps) */
+        flex-shrink: 0;
+      }
+      
+      /* Botões sociais - TAMANHO FIXO */
+      .social-btn {
+        background: rgba(217, 217, 217, 0);
+        border: 1px solid #ffffff;
+        border-radius: 8px;
+        width: 100%;
+        height: 60px; /* ALTURA FIXA */
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+      }
+      
+      .social-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+      
+      /* Ícones dentro dos botões */
+      .social-icon {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+      
+      /* Texto dos botões */
+      .btn-text {
+        color: rgba(255, 255, 255, 0.9);
+        font-family: "Lunasima-Regular", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        flex: 1;
+        text-align: left;
+      }
+      
+      /* Link de alternância - POSIÇÃO FIXA */
+      .toggle-link {
+        text-align: center;
+        font-family: "Lunasima-Regular", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        color: #000000;
+        margin-top: 20px;
+        width: 100%;
+        height: 30px; /* ALTURA FIXA */
+        flex-shrink: 0;
+      }
+      
+      .link-action {
+        color: #ffffff;
+        font-weight: bold;
+        margin-left: 5px;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      
+      /* Footer */
+      .footer {
+        background: #55a143;
+        width: 100%;
+        padding: 40px 0;
+        margin-top: auto;
+        position: relative;
+        z-index: 5;
+      }
+      
+      .footer-container {
+        width: 100%;
+        max-width: 1870px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        width: 100%;
+      }
+      
+      .footer-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      
+      .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 220px;
+        flex: 1;
+      }
+      
+      .footer-title {
+        color: #ffffff;
+        font-family: "Inter-Bold", sans-serif;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      
+      .footer-text {
+        color: rgba(255, 255, 255, 0.8);
+        font-family: "Inter-Regular", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+      }
+      
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .footer-link {
+        color: rgba(255, 255, 255, 0.8);
+        font-family: "Inter-Regular", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
+      
+      .footer-link:hover {
+        opacity: 0.8;
+      }
+      
+      .social-icons {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        align-items: center;
+        margin-top: 10px;
+      }
+      
+      .social-icon-link {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      
+      .social-icon-link:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+      
+      .social-icon-img {
+        width: 22px;
+        height: 22px;
+        filter: brightness(0) invert(1);
+      }
+      
+      .footer-divider {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 30px;
+        width: 100%;
+      }
+      
+      .footer-copyright {
+        color: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        font-family: "Inter-Regular", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        width: 100%;
+      }
+      
+      /* Responsividade */
+      @media (max-width: 1200px) {
+        .card-container {
+          width: 500px;
+        }
+        
+        .card-container.login-mode {
+          left: calc(100% - 500px);
+        }
+        
+        .search-container {
+          width: 400px;
+        }
+        
+        .footer-container {
+          padding: 0 30px;
+        }
+      }
+      
+      @media (max-width: 992px) {
+        .header-top, .header-bottom {
+          padding: 0 20px;
+        }
+        
+        .search-container {
+          width: 300px;
+          margin: 0 10px;
+        }
+        
+        .nav-links {
+          gap: 30px;
+        }
+        
+        .footer-container {
+          padding: 0 20px;
+        }
+        
+        .footer-row {
+          gap: 30px;
+        }
+        
+        .card-contents-container {
+          min-height: 550px;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .header {
+          height: 120px;
+        }
+        
+        .header-top {
+          flex-direction: column;
+          height: 60px;
+          padding: 10px 20px;
+          gap: 10px;
+        }
+        
+        .header-bottom {
+          height: 60px;
+          padding: 0 20px;
+        }
+        
+        .main-content {
+          margin-top: 120px;
+          min-height: calc(100vh - 120px);
+        }
+        
+        .card-container {
+          width: 100%;
+          height: calc(100vh - 120px);
+          position: relative;
+          left: 0 !important;
+          top: 0;
+        }
+        
+        .card-container.login-mode {
+          left: 0 !important;
+        }
+        
+        .logo {
+          font-size: 22px;
+        }
+        
+        .search-container {
+          width: 100%;
+          order: 3;
+          margin: 5px 0 0 0;
+        }
+        
+        .header-icons {
+          position: absolute;
+          right: 20px;
+          top: 15px;
+        }
+        
+        .nav-links {
+          gap: 20px;
+        }
+        
+        .nav-link {
+          font-size: 14px;
+        }
+        
+        .footer {
+          padding: 30px 0;
+          z-index: 1;
+        }
+        
+        .footer-row {
+          flex-direction: column;
+          gap: 30px;
+        }
+        
+        .footer-column {
+          min-width: 100%;
+          align-items: center;
+          text-align: center;
+        }
+        
+        .social-icons {
+          justify-content: center;
+        }
+        
+        .card-contents-container {
+          min-height: 500px;
+        }
+        
+        .social-buttons {
+          height: 210px;
+        }
+        
+        .social-btn {
+          height: 55px;
+        }
+      }
+      
+      @media (max-width: 576px) {
+        .header {
+          height: 110px;
+        }
+        
+        .header-top {
+          height: 55px;
+        }
+        
+        .header-bottom {
+          height: 55px;
+        }
+        
+        .main-content {
+          margin-top: 110px;
+          min-height: calc(100vh - 110px);
+        }
+        
+        .card-container {
+          height: calc(100vh - 110px);
+        }
+        
+        .card-content-wrapper {
+          padding: 20px;
+        }
+        
+        .nav-links {
+          gap: 15px;
+        }
+        
+        .nav-link {
+          font-size: 12px;
+        }
+        
+        .header-icon {
+          width: 22px;
+          height: 22px;
+        }
+        
+        .logo-image {
+          width: 150px;
+          height: 85px;
+          margin-bottom: 10px;
+        }
+        
+        .logo-section {
+          height: 130px;
+          margin-bottom: 20px;
+        }
+        
+        .card-title {
+          font-size: 20px;
+          margin-bottom: 30px;
+          height: 25px;
+        }
+        
+        .social-buttons {
+          gap: 15px;
+          margin-bottom: 25px;
+          height: 190px;
+        }
+        
+        .social-btn {
+          height: 50px;
+          padding: 0 15px;
+        }
+        
+        .btn-text {
+          font-size: 14px;
+        }
+        
+        .social-icon {
+          width: 20px;
+          height: 20px;
+          margin-right: 12px;
+        }
+        
+        .toggle-link {
+          margin-top: 15px;
+          font-size: 16px;
+          height: 25px;
+        }
+        
+        .footer {
+          padding: 25px 0;
+        }
+        
+        .footer-container {
+          padding: 0 15px;
+        }
+        
+        .footer-title {
+          font-size: 18px;
+        }
+        
+        .footer-text, .footer-link {
+          font-size: 14px;
+          line-height: 22px;
+        }
+        
+        .footer-copyright {
+          font-size: 14px;
+        }
+        
+        .card-contents-container {
+          min-height: 450px;
+        }
+      }

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nerd Hub - Login e Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="_13-14-tela-combined">
+      <!-- Header FIXO -->
+      <div class="header">
+        <div class="header-top">
+          <div class="logo">NerdHub</div>
+          
+          <div class="search-container">
+            <input type="text" class="search-bar" />
+            <div class="search-placeholder">O que você está procurando?</div>
+          </div>
+          
+          <div class="header-icons">
+            <img class="header-icon" src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Perfil" />
+            <img class="header-icon" src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho" />
+          </div>
+        </div>
+        
+        <div class="header-bottom">
+          <div class="nav-links">
+            <div class="nav-link">Principal</div>
+            <div class="nav-link">Sobre Nós</div>
+            <div class="nav-link">Suporte</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Conteúdo Principal -->
+      <div class="main-content">
+        <div class="background-container">
+          <img class="group-367-1-2" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Background" />
+          <div class="frame-296"></div>
+        </div>
+        
+        <!-- Card Container - SEM BUG NA TRANSIÇÃO -->
+        <div class="card-container" id="cardContainer">
+          <div class="card-green">
+            <div class="card-content-wrapper">
+              <div class="card-contents-container">
+                <!-- Conteúdo de CADASTRO -->
+                <div class="form-content" id="cadastroContent">
+                  <div class="logo-section">
+                    <img class="logo-image" src="https://cdn-icons-png.flaticon.com/512/891/891419.png" alt="Logo" />
+                    <div class="logo-text">NERD HUB</div>
+                  </div>
+                  
+                  <div class="card-title">Cadastrar</div>
+                  
+                  <div class="social-buttons">
+                    <button class="social-btn" id="btnCadastroGoogle">
+                      <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google" />
+                      <span class="btn-text">Continuar com Google</span>
+                    </button>
+                    
+                    <button class="social-btn" id="btnCadastroApple">
+                      <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple" />
+                      <span class="btn-text">Continuar com Apple</span>
+                    </button>
+                    
+                    <button class="social-btn" id="btnCadastroEmail">
+                      <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" />
+                      <span class="btn-text">Continuar com E-mail</span>
+                    </button>
+                  </div>
+                  
+                  <div class="toggle-link">
+                    <span>Já tem uma conta?</span>
+                    <span class="link-action" onclick="toggleToLogin()">Entrar</span>
+                  </div>
+                </div>
+                
+                <!-- Conteúdo de LOGIN - MESMA ESTRUTURA EXATA -->
+                <div class="form-content login-content" id="loginContent">
+                  <div class="logo-section">
+                    <img class="logo-image" src="https://cdn-icons-png.flaticon.com/512/891/891419.png" alt="Logo" />
+                    <div class="logo-text">NERD HUB</div>
+                  </div>
+                  
+                  <div class="card-title">Entrar</div>
+                  
+                  <div class="social-buttons">
+                    <button class="social-btn" id="btnLoginGoogle">
+                      <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google" />
+                      <span class="btn-text">Continuar com Google</span>
+                    </button>
+                    
+                    <button class="social-btn" id="btnLoginApple">
+                      <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple" />
+                      <span class="btn-text">Continuar com Apple</span>
+                    </button>
+                    
+                    <button class="social-btn" id="btnLoginEmail">
+                      <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" />
+                      <span class="btn-text">Continuar com E-mail</span>
+                    </button>
+                  </div>
+                  
+                  <div class="toggle-link">
+                    <span>Não tem uma conta?</span>
+                    <span class="link-action" onclick="toggleToCadastro()">Cadastrar</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="footer">
+        <div class="footer-container">
+          <div class="footer-content">
+            <div class="footer-row">
+              <div class="footer-column">
+                <div class="footer-title">Nerd Hub</div>
+                <div class="footer-text">
+                  Sua loja de confiança para produtos de alta qualidade e atendimento excepcional.
+                </div>
+              </div>
+              
+              <div class="footer-column">
+                <div class="footer-title">Links Rápidos</div>
+                <div class="footer-links">
+                  <div class="footer-link">Principal</div>
+                  <div class="footer-link">Sobre Nós</div>
+                  <div class="footer-link">Loja</div>
+                  <div class="footer-link">Suporte</div>
+                </div>
+              </div>
+              
+              <div class="footer-column">
+                <div class="footer-title">Categorias</div>
+                <div class="footer-links">
+                  <div class="footer-link">Colecionáveis</div>
+                  <div class="footer-link">Games</div>
+                  <div class="footer-link">Acessórios</div>
+                  <div class="footer-link">Vestuário</div>
+                </div>
+              </div>
+              
+              <div class="footer-column">
+                <div class="footer-title">Redes Sociais</div>
+                <div class="social-icons">
+                  <div class="social-icon-link">
+                    <img class="social-icon-img" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+                  </div>
+                  <div class="social-icon-link">
+                    <img class="social-icon-img" src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+                  </div>
+                  <div class="social-icon-link">
+                    <img class="social-icon-img" src="https://cdn-icons-png.flaticon.com/512/1384/1384012.png" alt="Twitter" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="footer-divider">
+              <div class="footer-copyright">
+                © 2024 Nerd Hub. Todos os direitos reservados.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Estado inicial: modo cadastro (card na esquerda)
+      let isLoginMode = false;
+      
+      function toggleToLogin() {
+        if (!isLoginMode) {
+          // Move o card para a direita
+          document.getElementById('cardContainer').classList.add('login-mode');
+          
+          // Alterna os conteúdos com transição suave
+          document.getElementById('cadastroContent').classList.add('hidden');
+          setTimeout(() => {
+            document.getElementById('loginContent').classList.add('visible');
+          }, 10); // Pequeno delay para transição suave
+          
+          isLoginMode = true;
+        }
+      }
+      
+      function toggleToCadastro() {
+        if (isLoginMode) {
+          // Move o card para a esquerda
+          document.getElementById('cardContainer').classList.remove('login-mode');
+          
+          // Alterna os conteúdos com transição suave
+          document.getElementById('loginContent').classList.remove('visible');
+          setTimeout(() => {
+            document.getElementById('cadastroContent').classList.remove('hidden');
+          }, 10); // Pequeno delay para transição suave
+          
+          isLoginMode = false;
+        }
+      }
+      
+      // Adicionar funcionalidade aos botões sociais
+      document.querySelectorAll('.social-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const action = isLoginMode ? 'Login' : 'Cadastro';
+          const buttonText = this.querySelector('.btn-text').textContent;
+          alert(`${action} com: ${buttonText}`);
+        });
+      });
+      
+      // Adicionar funcionalidade aos ícones do header
+      document.querySelectorAll('.header-icon').forEach((icon, index) => {
+        icon.addEventListener('click', function() {
+          if (index === 0) {
+            alert('Abrindo perfil do usuário');
+          } else {
+            alert('Abrindo carrinho de compras');
+          }
+        });
+      });
+      
+      // Adicionar funcionalidade aos links de navegação
+      document.querySelectorAll('.nav-link, .footer-link').forEach(link => {
+        link.addEventListener('click', function() {
+          alert(`Navegando para: ${this.textContent}`);
+        });
+      });
+      
+      // Adicionar funcionalidade à barra de busca
+      const searchBar = document.querySelector('.search-bar');
+      const searchPlaceholder = document.querySelector('.search-placeholder');
+      
+      searchBar.addEventListener('focus', function() {
+        searchPlaceholder.style.opacity = '0';
+      });
+      
+      searchBar.addEventListener('blur', function() {
+        if (!this.value) {
+          searchPlaceholder.style.opacity = '1';
+        }
+      });
+      
+      // Adicionar funcionalidade aos ícones sociais do footer
+      document.querySelectorAll('.social-icon-link').forEach(icon => {
+        icon.addEventListener('click', function() {
+          alert('Redirecionando para rede social');
+        });
+      });
+    </script>
+</body>
+</html>
