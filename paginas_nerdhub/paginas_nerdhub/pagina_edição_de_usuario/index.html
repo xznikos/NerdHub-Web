@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nerd Hub - Editar Perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <a href="/">NerDHub</a>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="search" placeholder="O que você está procurando?" class="search-input">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="header-icons">
+                    <a href="#" class="icon-link">
+                        <i class="far fa-heart"></i>
+                    </a>
+                    <a href="#" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link">Principal</a></li>
+                    <li><a href="#" class="nav-link">Sobre Nós</a></li>
+                    <li><a href="#" class="nav-link">Suporte</a></li>
+                    <li><a href="#" class="nav-link active">Minha Conta</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="container main-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h2 class="sidebar-title">Configurações</h2>
+                
+                <nav class="sidebar-nav">
+                    <ul class="sidebar-menu">
+                        <li class="menu-item active">
+                            <a href="#" class="menu-link">
+                                <i class="fas fa-user icon"></i>
+                                <span>Perfil</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                <i class="fas fa-shield-alt icon"></i>
+                                <span>Segurança</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                <i class="fas fa-map-marker-alt icon"></i>
+                                <span>Endereço</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                <i class="fas fa-sliders-h icon"></i>
+                                <span>Preferências</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                <i class="fas fa-lock icon"></i>
+                                <span>Privacidade</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                <i class="fas fa-cog icon"></i>
+                                <span>Conta</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <div class="sidebar-footer">
+                    <a href="#" class="support-link">
+                        <i class="fas fa-comments"></i>
+                        <span>Chat Suporte</span>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Conteúdo Principal -->
+            <div class="content">
+                <!-- Cabeçalho -->
+                <header class="content-header">
+                    <h1 class="page-title">Perfil</h1>
+                    <p class="page-subtitle">Informações básicas do seu perfil</p>
+                </header>
+
+                <!-- Avatar -->
+                <div class="profile-avatar">
+                    <div class="avatar-circle">
+                        <i class="fas fa-user avatar-icon"></i>
+                    </div>
+                    <div class="avatar-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-camera"></i>
+                            Mudar Foto
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                            Remover
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Formulário do Perfil -->
+                <form class="profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="username">Nome de Perfil</label>
+                            <input type="text" id="username" class="form-input" value="carlos_silva_dev" readonly>
+                            <small class="form-help">Este nome será exibido publicamente</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fullname">Nome Completo *</label>
+                            <input type="text" id="fullname" class="form-input" value="Carlos Silva" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" class="form-input" value="carlos.silva@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" class="form-input" value="(11) 98765-4321">
+                            <small class="form-help">Formato: (99) 99999-9999</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birthdate">Data de Nascimento</label>
+                            <div class="date-wrapper">
+                                <input type="date" id="birthdate" class="form-input date-input" value="1990-05-15">
+                                <i class="fas fa-calendar date-icon"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gender">Gênero</label>
+                            <div class="select-wrapper">
+                                <select id="gender" class="form-input">
+                                    <option value="masculino" selected>Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="outro">Outro</option>
+                                    <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+                                </select>
+                                <i class="fas fa-chevron-down select-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botão Salvar -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success btn-large">
+                            <i class="fas fa-save"></i>
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Informações da Conta -->
+                <section class="account-info">
+                    <h2 class="section-title">Informações da Conta</h2>
+                    
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>Membro desde</h3>
+                                <p>15 de Janeiro, 2023</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>Pedidos realizados</h3>
+                                <p>47 pedidos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>Último acesso</h3>
+                                <p>Hoje às 14:30</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon status">
+                                <span class="status-dot active"></span>
+                            </div>
+                            <div class="info-content">
+                                <h3>Status da conta</h3>
+                                <p class="status-active">Ativa</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ações da Conta -->
+                <section class="account-actions">
+                    <h2 class="section-title">Ações da Conta</h2>
+                    
+                    <div class="export-section">
+                        <h3 class="subsection-title">Exportar Dados</h3>
+                        
+                        <div class="export-options">
+                            <div class="export-card">
+                                <div class="export-info">
+                                    <h4>Exportar histórico de pedidos</h4>
+                                    <p>Baixe um arquivo CSV com todos os seus pedidos</p>
+                                </div>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-file-csv"></i>
+                                    CSV
+                                </button>
+                            </div>
+                            
+                            <div class="export-card">
+                                <div class="export-info">
+                                    <h4>Exportar dados pessoais</h4>
+                                    <p>Baixe um arquivo JSON com todas as suas informações</p>
+                                </div>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-file-code"></i>
+                                    JSON
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="danger-actions">
+                        <div class="action-card warning">
+                            <div class="action-info">
+                                <h4>Desativar Temporariamente</h4>
+                                <p>Sua conta será suspensa temporariamente. Você pode reativá-la quando quiser.</p>
+                            </div>
+                            <button class="btn btn-warning">Desativar</button>
+                        </div>
+                        
+                        <div class="action-card danger">
+                            <div class="action-info">
+                                <h4>Excluir Conta</h4>
+                                <p>Esta ação é permanente. Todos os seus dados serão removidos.</p>
+                            </div>
+                            <button class="btn btn-danger">Excluir</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3 class="footer-title">Nerd Hub</h3>
+                    <p class="footer-description">
+                        Sua loja de confiança para produtos de alta qualidade e atendimento excepcional.
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">Principal</a></li>
+                        <li><a href="#" class="footer-link">Sobre Nós</a></li>
+                        <li><a href="#" class="footer-link">Loja</a></li>
+                        <li><a href="#" class="footer-link">Suporte</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Categorias</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">Colecionáveis</a></li>
+                        <li><a href="#" class="footer-link">Games</a></li>
+                        <li><a href="#" class="footer-link">Acessórios</a></li>
+                        <li><a href="#" class="footer-link">Vestuário</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2024 Nerd Hub. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
