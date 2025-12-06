@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edição de Endereço - Nerd Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* RESET E BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: none;
+            text-decoration: none;
+            background: none;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        menu, ol, ul {
+            list-style-type: none;
+        }
+
+        :root {
+            --primary-green: #55a143;
+            --dark-green: #438b33;
+            --darker-green: #2daf10;
+            --black: #131313;
+            --white: #ffffff;
+            --gray-light: #dfdede;
+            --gray-medium: #9ca3af;
+            --overlay-white: rgba(217, 217, 217, 0.2);
+            --border-radius: 20px;
+            --border-radius-sm: 16px;
+        }
+
+        body {
+            background: var(--gray-light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* LAYOUT CONTAINER */
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER - SEM ESPAÇOS NAS LATERAIS */
+        .main-header {
+            background: var(--white);
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .header-top {
+            background: var(--primary-green);
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        .header-bottom {
+            background: var(--black);
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 127px;
+            width: 100%;
+        }
+
+        .logo {
+            color: var(--white);
+            font-family: 'LuckiestGuy-Regular', sans-serif;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+        }
+
+        .search-box {
+            background: var(--white);
+            border-radius: 40px;
+            width: 576px;
+            height: 42px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 100%;
+            background: none;
+            color: black;
+            font-size: 16px;
+            padding: 0 20px 0 50px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: none;
+            border: none;
+        }
+
+        .search-input:focus-visible {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .search-input::placeholder {
+            color: gray;
+            opacity: 0.9;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            color: gray;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-btn {
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background 0.3s;
+            outline: none;
+        }
+
+        .header-btn:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-btn {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--white);
+            color: var(--primary-green);
+            font-size: 12px;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: var(--white);
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            opacity: 0.8;
+        }
+
+        /* MAIN CONTENT - LAYOUT FLEXÍVEL */
+        .main-content {
+            display: flex;
+            gap: 40px;
+            padding: 30px 40px 20px; /* Reduzido padding superior e inferior */
+            flex: 1;
+            min-height: 0; /* Importante para flex children */
+        }
+
+        /* SIDEBAR CONFIGURAÇÕES */
+        .settings-sidebar {
+            background: var(--primary-green);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 256px;
+            padding: 25px;
+            backdrop-filter: blur(5px);
+            flex-shrink: 0;
+            height: fit-content;
+            min-height: 0;
+        }
+
+        .settings-title {
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 28px;
+            margin-bottom: 24px;
+        }
+
+        .settings-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .settings-nav-item {
+            border-radius: var(--border-radius-sm);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .settings-nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .settings-nav-item.active {
+            background: rgba(20, 184, 166, 0.3);
+            border-left: 3px solid #14b8a6;
+            padding-left: 19px;
+        }
+
+        .settings-nav-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--white);
+        }
+
+        .settings-nav-text {
+            color: var(--white);
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .support-item {
+            margin-top: 16px;
+        }
+
+        /* FORMULÁRIO DE ENDEREÇO - CARD DINÂMICO */
+        .address-container {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .address-card {
+            background: var(--primary-green);
+            border-radius: var(--border-radius);
+            padding: 25px 28px; /* Reduzido ainda mais */
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            flex: 1; /* Ocupa todo espaço disponível */
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .address-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--overlay-white);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px);
+        }
+
+        .address-card-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .address-title {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 32px;
+            margin-bottom: 20px; /* Reduzido */
+            flex-shrink: 0;
+        }
+
+        .address-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Reduzido significativamente */
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px; /* Reduzido */
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 16px;
+            display: block;
+            margin-bottom: 8px; /* Reduzido */
+            flex-shrink: 0;
+        }
+
+        .form-input {
+            background: var(--dark-green);
+            border-radius: var(--border-radius-sm);
+            width: 100%;
+            height: 46px; /* Reduzido */
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 700;
+            padding: 0 20px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+            outline: none;
+            flex-shrink: 0;
+        }
+
+        .form-input:focus {
+            outline: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+
+        .form-input:focus-visible {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .form-input::placeholder {
+            color: var(--white);
+            opacity: 0.9;
+        }
+
+        .form-input-large {
+            height: 46px; /* Igual aos outros */
+        }
+
+        .form-input-submit {
+            background: var(--darker-green);
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 5px; /* Reduzido */
+            outline: none;
+            width: 100%;
+            height: 48px; /* Apenas um pouco maior */
+            flex-shrink: 0;
+        }
+
+        .form-input-submit:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .form-input-submit:hover {
+            background: #259a0e;
+        }
+
+        /* CONTAINER PARA GARANTIR MARGEM IMAGINÁRIA */
+        .form-container {
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espaço entre grupos */
+            min-height: 0;
+        }
+
+        /* TODOS OS INPUTS TERMINAM NA MESMA MARGEM */
+        .form-group-half {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .form-group-single {
+            width: 100%;
+        }
+
+        /* AJUSTE ESPECÍFICO PARA LINHA DE NÚMERO E COMPLEMENTO */
+        .form-row-special {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .form-number {
+            flex: 0 0 160px; /* Largura fixa menor */
+        }
+
+        .form-complement {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* FOOTER - SEM ESPAÇOS NAS LATERAIS */
+        .main-footer {
+            background: var(--primary-green);
+            padding: 32px 0;
+            width: 100%;
+            margin-top: 30px; /* Reduzido */
+            flex-shrink: 0;
+        }
+
+        .footer-container {
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-bottom: 32px;
+            padding: 0 24px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-title {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: background 0.3s;
+        }
+
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        /* RESPONSIVIDADE DINÂMICA */
+        @media (max-width: 1200px) {
+            .main-content {
+                flex-direction: column;
+                padding: 20px 20px 15px; /* Reduzido */
+                gap: 30px;
+            }
+            
+            .settings-sidebar {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .address-card {
+                padding: 20px; /* Reduzido */
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 12px; /* Reduzido */
+            }
+            
+            .form-row-special {
+                flex-direction: column;
+                gap: 12px; /* Reduzido */
+            }
+            
+            .form-number {
+                flex: 1;
+                width: 100%;
+            }
+            
+            .address-form {
+                gap: 12px; /* Reduzido */
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+            
+            .search-box {
+                order: 3;
+                width: 100%;
+            }
+            
+            .header-bottom {
+                height: 60px;
+                gap: 40px;
+            }
+            
+            .main-content {
+                padding: 15px 15px 10px; /* Reduzido */
+                gap: 20px;
+            }
+            
+            .form-row {
+                gap: 10px;
+            }
+            
+            .form-row-special {
+                gap: 10px;
+            }
+            
+            .address-card {
+                padding: 18px 20px; /* Reduzido */
+            }
+            
+            .address-title {
+                font-size: 22px;
+                margin-bottom: 15px; /* Reduzido */
+            }
+            
+            .address-form {
+                gap: 10px; /* Reduzido */
+            }
+            
+            .form-input {
+                height: 44px; /* Reduzido */
+            }
+            
+            .form-input-large {
+                height: 44px;
+            }
+            
+            .form-input-submit {
+                height: 46px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 0 15px;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-top {
+                padding: 15px;
+            }
+            
+            .header-bottom {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .main-content {
+                padding: 10px 10px 5px; /* Reduzido */
+                gap: 15px;
+            }
+            
+            .address-card {
+                padding: 15px; /* Reduzido */
+            }
+            
+            .address-title {
+                font-size: 20px;
+                margin-bottom: 12px; /* Reduzido */
+            }
+            
+            .form-row {
+                gap: 8px;
+            }
+            
+            .form-row-special {
+                gap: 8px;
+            }
+            
+            .form-input {
+                height: 42px;
+                font-size: 14px;
+                padding: 0 15px;
+            }
+            
+            .form-input-large {
+                height: 42px;
+            }
+            
+            .form-input-submit {
+                height: 44px;
+                margin-top: 3px;
+                font-size: 14px;
+            }
+            
+            .form-label {
+                font-size: 14px;
+                margin-bottom: 6px; /* Reduzido */
+            }
+            
+            .address-form {
+                gap: 8px; /* Reduzido */
+            }
+            
+            .footer-grid {
+                padding: 0 10px;
+                gap: 25px;
+            }
+            
+            .main-footer {
+                padding: 25px 0;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .address-card {
+                padding: 12px; /* Reduzido */
+            }
+            
+            .form-input {
+                height: 40px;
+                font-size: 13px;
+            }
+            
+            .form-input-large {
+                height: 40px;
+            }
+            
+            .form-input-submit {
+                height: 42px;
+            }
+            
+            .address-title {
+                font-size: 18px;
+                margin-bottom: 10px; /* Reduzido */
+            }
+            
+            .address-form {
+                gap: 6px; /* Reduzido */
+            }
+            
+            .form-label {
+                font-size: 13px;
+                margin-bottom: 4px; /* Reduzido */
+            }
+        }
+
+        /* Para telas muito altas */
+        @media (min-height: 900px) {
+            .address-card {
+                padding: 30px 28px; /* Um pouco mais em telas altas */
+            }
+            
+            .address-form {
+                gap: 18px;
+            }
+            
+            .form-input {
+                height: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- HEADER SEM ESPAÇOS LATERAIS -->
+        <header class="main-header">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-gamepad logo-icon"></i>
+                    NerDHub
+                </div>
+                
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Digite...">
+                </div>
+                
+                <div class="header-actions">
+                    <button class="header-btn" aria-label="Perfil">
+                        <i class="fas fa-user"></i>
+                        Perfil
+                    </button>
+                    <button class="header-btn cart-btn" aria-label="Carrinho">
+                        <i class="fas fa-shopping-cart"></i>
+                        Carrinho
+                        <span class="cart-count">2</span>
+                    </button>
+                </div>
+            </div>
+            
+            <nav class="header-bottom">
+                <a href="#" class="nav-link">Principal</a>
+                <a href="#" class="nav-link">Sobre Nós</a>
+                <a href="#" class="nav-link active">Suporte</a>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- SIDEBAR DE CONFIGURAÇÕES -->
+            <aside class="settings-sidebar">
+                <h2 class="settings-title">Configurações</h2>
+                
+                <nav class="settings-nav">
+                    <div class="settings-nav-item">
+                        <i class="fas fa-user settings-nav-icon"></i>
+                        <span class="settings-nav-text">Perfil</span>
+                    </div>
+                    
+                    <div class="settings-nav-item">
+                        <i class="fas fa-shield-alt settings-nav-icon"></i>
+                        <span class="settings-nav-text">Segurança</span>
+                    </div>
+                    
+                    <div class="settings-nav-item active">
+                        <i class="fas fa-map-marker-alt settings-nav-icon"></i>
+                        <span class="settings-nav-text">Endereço</span>
+                    </div>
+                    
+                    <div class="settings-nav-item">
+                        <i class="fas fa-cog settings-nav-icon"></i>
+                        <span class="settings-nav-text">Preferências</span>
+                    </div>
+                    
+                    <div class="settings-nav-item">
+                        <i class="fas fa-lock settings-nav-icon"></i>
+                        <span class="settings-nav-text">Privacidade</span>
+                    </div>
+                    
+                    <div class="settings-nav-item">
+                        <i class="fas fa-user-cog settings-nav-icon"></i>
+                        <span class="settings-nav-text">Conta</span>
+                    </div>
+                    
+                    <div class="settings-nav-item support-item">
+                        <i class="fas fa-comments settings-nav-icon"></i>
+                        <span class="settings-nav-text">Chat Suporte</span>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- FORMULÁRIO DE ENDEREÇO -->
+            <section class="address-container">
+                <div class="address-card">
+                    <div class="address-card-content">
+                        <h1 class="address-title">Endereço</h1>
+                        
+                        <form class="address-form">
+                            <!-- Container principal para garantir a margem -->
+                            <div class="form-container">
+                                <!-- Primeira linha: País e Estado -->
+                                <div class="form-row">
+                                    <div class="form-group form-group-half">
+                                        <label class="form-label">País</label>
+                                        <input type="text" class="form-input" placeholder="Digite...">
+                                    </div>
+                                    
+                                    <div class="form-group form-group-half">
+                                        <label class="form-label">Estado</label>
+                                        <input type="text" class="form-input" placeholder="Digite...">
+                                    </div>
+                                </div>
+
+                                <!-- Segunda linha: Cidade e CEP -->
+                                <div class="form-row">
+                                    <div class="form-group form-group-half">
+                                        <label class="form-label">Cidade</label>
+                                        <input type="text" class="form-input" placeholder="Digite...">
+                                    </div>
+                                    
+                                    <div class="form-group form-group-half">
+                                        <label class="form-label">CEP</label>
+                                        <input type="text" class="form-input" placeholder="Digite...">
+                                    </div>
+                                </div>
+
+                                <!-- Terceira linha: Endereço completo -->
+                                <div class="form-row">
+                                    <div class="form-group form-group-single">
+                                        <label class="form-label">Endereço</label>
+                                        <input type="text" class="form-input" placeholder="Digite...">
+                                    </div>
+                                </div>
+
+                                <!-- Quarta linha: Número e Complemento -->
+                                <div class="form-row-special">
+                                    <div class="form-group form-number">
+                                        <label class="form-label">Número</label>
+                                        <input type="text" class="form-input form-input-large" placeholder="Digite...">
+                                    </div>
+                                    
+                                    <div class="form-group form-complement">
+                                        <label class="form-label">Complemento</label>
+                                        <input type="text" class="form-input form-input-large" placeholder="Digite...">
+                                    </div>
+                                </div>
+
+                                <!-- Quinta linha: Ponto de referência -->
+                                <div class="form-row">
+                                    <div class="form-group form-group-single">
+                                        <label class="form-label">Ponto de referência</label>
+                                        <input type="text" class="form-input form-input-large" placeholder="Digite...">
+                                    </div>
+                                </div>
+
+                                <!-- Botão de salvar -->
+                                <div class="form-row">
+                                    <div class="form-group form-group-single">
+                                        <button type="button" class="form-input form-input-submit form-input-large">
+                                            Salvar Alterações
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER SEM ESPAÇOS LATERAIS -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h3 class="footer-title">
+                            <i class="fas fa-gamepad"></i>
+                            Nerd Hub
+                        </h3>
+                        <p class="footer-description">
+                            Sua loja de confiança para produtos de alta qualidade e
+                            <br>
+                            atendimento excepcional.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3 class="footer-title">Links Rápidos</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" class="footer-link">Principal</a></li>
+                            <li><a href="#" class="footer-link">Sobre Nós</a></li>
+                            <li><a href="#" class="footer-link">Loja</a></li>
+                            <li><a href="#" class="footer-link">Suporte</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3 class="footer-title">Categorias</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" class="footer-link">Colecionáveis</a></li>
+                            <li><a href="#" class="footer-link">Games</a></li>
+                            <li><a href="#" class="footer-link">Acessórios</a></li>
+                            <li><a href="#" class="footer-link">Vestuário</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3 class="footer-title">Redes Sociais</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p class="copyright">
+                        <i class="far fa-copyright"></i>
+                        2024 Nerd Hub. Todos os direitos reservados.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Navegação do menu de configurações
+        document.querySelectorAll('.settings-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.settings-nav-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Botão de salvar
+        document.querySelector('.form-input-submit').addEventListener('click', function() {
+            this.textContent = 'Salvando...';
+            this.style.background = '#1e7d0b';
+            
+            setTimeout(() => {
+                this.textContent = 'Salvo com sucesso!';
+                this.style.background = '#2daf10';
+                
+                setTimeout(() => {
+                    this.textContent = 'Salvar Alterações';
+                }, 2000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

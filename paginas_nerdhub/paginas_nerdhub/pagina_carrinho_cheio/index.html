@@ -5,375 +5,1591 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho - Nerd Hub</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset básico */
+        /* VARIÁVEIS E RESET */
+        :root {
+            /* Cores */
+            --primary-green: #55a143;
+            --dark-green: #478536;
+            --light-green: #78a55a;
+            --black: #131313;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Espaçamentos */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            /* Bordas */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            
+            /* Transições */
+            --transition-fast: 150ms ease;
+            --transition-normal: 300ms ease;
+            --transition-slow: 500ms ease;
+        }
+
+        /* RESET E BASE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
-        
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
         body {
-            background: #dfdede;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-900);
+            line-height: 1.5;
             min-height: 100vh;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER RESPONSIVO */
+        .main-header {
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            background: var(--primary-green);
+            padding: var(--space-sm) 0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-lg);
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            font-size: 1.75rem;
+        }
+
+        /* Search */
+        .search-wrapper {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: var(--space-lg);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-400);
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 44px;
+            padding: 0 var(--space-lg) 0 3rem;
+            background: var(--white);
+            border: 2px solid transparent;
+            border-radius: var(--radius-full);
+            font-size: 0.95rem;
+            transition: all var(--transition-normal);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--dark-green);
+            box-shadow: 0 0 0 3px rgba(85, 161, 67, 0.1);
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            flex-shrink: 0;
+        }
+
+        .header-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            background: transparent;
+            border: none;
+            color: var(--white);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-btn {
             position: relative;
         }
-        
-        a, button, input, select, h1, h2, h3, h4, h5, * {
-            text-decoration: none;
-            background: none;
+
+        .cart-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--white);
+            color: var(--primary-green);
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
             border: none;
-            outline: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: var(--space-sm);
+        }
+
+        /* Navigation */
+        .main-nav {
+            background: var(--black);
+            padding: var(--space-md) var(--space-lg);
+            display: flex;
+            justify-content: center;
+            gap: var(--space-2xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: var(--white);
+            border-radius: var(--radius-full);
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            padding: var(--space-xl);
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--space-xl);
+            align-items: start;
+        }
+
+        /* Cart Items Section */
+        .cart-items-section {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .items-count {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+        }
+
+        /* Cart Items List */
+        .cart-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cart-item:hover {
+            border-color: var(--gray-300);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .item-media {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
+            min-width: 100px;
+        }
+
+        .item-brand {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .brand-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            background: var(--white);
+            padding: var(--space-sm);
+        }
+
+        .item-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 0;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .item-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .item-brand-name {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+        }
+
+        .item-price {
+            color: var(--primary-green);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .quantity-label {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: var(--white);
+            border-radius: var(--radius-full);
+            padding: 2px;
+            border: 1px solid var(--gray-300);
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            color: var(--gray-700);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .qty-btn:hover {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .qty-value {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .item-remove-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            width: 100px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .item-remove-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+            position: sticky;
+            top: calc(148px + var(--space-xl));
+        }
+
+        /* Featured Product */
+        .featured-product {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+        }
+
+        .brand-name {
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .product-image-container {
+            display: flex;
+            justify-content: center;
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+        }
+
+        .product-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--gray-900);
+        }
+
+        .pricing-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .main-price {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .price-label {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+        }
+
+        .price-value {
+            color: var(--primary-green);
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .payment-option i {
+            color: var(--gray-500);
+            width: 20px;
+        }
+
+        .quantity-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .quantity-stepper {
+            display: flex;
+            align-items: center;
+            background: var(--gray-100);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .stepper-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: var(--gray-700);
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+        }
+
+        .stepper-btn:hover {
+            background: var(--gray-200);
+        }
+
+        .stepper-value {
+            width: 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Similar Products */
+        .similar-products {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .products-container {
+            margin-top: var(--space-lg);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .products-grid .product-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .products-grid .product-card:hover {
+            border-color: var(--gray-300);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            background: var(--primary-green);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: var(--radius-full);
+            z-index: 1;
+        }
+
+        .product-image-container {
+            position: relative;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+        }
+
+        .brand-overlay {
+            position: absolute;
+            top: var(--space-sm);
+            left: var(--space-sm);
+            width: 30px;
+            height: 30px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .brand-overlay img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .product-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            line-height: 1.4;
+            height: 40px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-pricing {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .old-price {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            text-decoration: line-through;
+        }
+
+        .current-price {
+            color: var(--primary-green);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--gray-800);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--gray-900);
+            transform: translateY(-2px);
+        }
+
+        .view-all-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary-green);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER */
+        .main-footer {
+            background: var(--primary-green);
+            color: var(--white);
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .footer-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            list-style: none;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color var(--transition-fast);
+            padding: var(--space-xs) 0;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+            padding-left: var(--space-xs);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            font-size: 1.1rem;
+        }
+
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: var(--space-xl);
+            text-align: center;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+        }
+
+        /* =================== RESPONSIVIDADE AVANÇADA =================== */
+
+        /* DESKTOP GRANDE (1440px+) */
+        @media (min-width: 1440px) {
+            .cart-grid {
+                grid-template-columns: 1fr 450px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* DESKTOP (1024px - 1440px) */
+        @media (max-width: 1200px) {
+            .cart-grid {
+                grid-template-columns: 1fr 380px;
+                gap: var(--space-lg);
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .item-media {
+                min-width: 90px;
+            }
+            
+            .item-image {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        /* TABLET (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .cart-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-xl);
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+                gap: var(--space-md);
+            }
+            
+            .search-wrapper {
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .main-nav {
+                gap: var(--space-xl);
+                padding: var(--space-md);
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        /* TABLET PEQUENO (640px - 768px) */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: var(--space-lg);
+            }
+            
+            .cart-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: var(--space-md);
+            }
+            
+            .item-media {
+                flex-direction: row;
+                justify-content: center;
+                gap: var(--space-lg);
+            }
+            
+            .item-content {
+                align-items: center;
+            }
+            
+            .item-meta {
+                justify-content: center;
+            }
+            
+            .item-quantity {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+            
+            .item-remove-btn {
+                width: 100%;
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .featured-product .product-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .product-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .quantity-section {
+                flex-direction: column;
+                gap: var(--space-md);
+                align-items: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                flex-direction: column;
+                gap: var(--space-sm);
+                padding: var(--space-lg);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--black);
+                box-shadow: var(--shadow-lg);
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .nav-link.active::after {
+                display: none;
+            }
+        }
+
+        /* MOBILE (480px - 640px) */
+        @media (max-width: 640px) {
+            .header-content {
+                padding: 0 var(--space-md);
+            }
+            
+            .main-content {
+                padding: var(--space-md);
+            }
+            
+            .cart-items-section,
+            .featured-product,
+            .similar-products {
+                padding: var(--space-lg);
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+            
+            .products-grid .product-card {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .product-image-container {
+                width: 100px;
+                height: 100px;
+                flex-shrink: 0;
+                padding: var(--space-md);
+            }
+            
+            .product-image {
+                max-width: 80px;
+            }
+            
+            .product-info {
+                flex: 1;
+                min-width: 0;
+            }
+            
+            .product-name {
+                height: auto;
+                -webkit-line-clamp: 3;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+            
+            .footer-column {
+                align-items: center;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        /* MOBILE PEQUENO (até 480px) */
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .logo span {
+                display: none;
+            }
+            
+            .logo-icon {
+                font-size: 2rem;
+            }
+            
+            .header-btn .btn-label {
+                display: none;
+            }
+            
+            .header-btn {
+                padding: var(--space-sm);
+            }
+            
+            .cart-item {
+                padding: var(--space-md);
+            }
+            
+            .item-media {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+            
+            .item-image {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .item-title {
+                font-size: 1rem;
+            }
+            
+            .item-price {
+                font-size: 1.1rem;
+            }
+            
+            .quantity-control {
+                gap: 2px;
+            }
+            
+            .qty-btn {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .product-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .price-value {
+                font-size: 1.5rem;
+            }
+            
+            .current-price {
+                font-size: 1.1rem;
+            }
+            
+            .stepper-btn {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .stepper-value {
+                width: 36px;
+            }
+        }
+
+        /* TELAS MUITO PEQUENAS (até 360px) */
+        @media (max-width: 360px) {
+            html {
+                font-size: 13px;
+            }
+            
+            .header-content {
+                padding: 0 var(--space-sm);
+            }
+            
+            .main-content {
+                padding: var(--space-sm);
+            }
+            
+            .cart-items-section,
+            .featured-product,
+            .similar-products {
+                padding: var(--space-md);
+            }
+            
+            .products-grid .product-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .product-image-container {
+                width: 100%;
+                height: 120px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Container principal mantendo layout original -->
-    <div class="page-container">
-        <!-- HEADER (posicionamento absoluto mantido) -->
-        <!-- HEADER (posicionamento absoluto mantido) -->
-<div class="header">
-    <div class="header-top-bar"></div>
-    <div class="header-bottom-bar"></div>
-    
-    <div class="logo-container">
-        <div class="logo">NerdHub</div>
-    </div>
-    
-    <div class="search-container">
-        <input type="text" class="search-input" placeholder="O que você está procurando?">
-    </div>
-    
-    <div class="header-icons">
-        <img class="icon-cart" src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrinho">
-        <img class="icon-profile" src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Perfil">
-    </div>
-    
-    <nav class="navigation">
-        <div class="nav-item">Principal</div>
-        <div class="nav-item">Sobre Nós</div>
-        <div class="nav-item">Suporte</div>
-    </nav>
-</div>
-
-        <!-- MAIN CONTENT (posicionamento absoluto mantido) -->
-        <div class="main-content">
-            <!-- Produto em Destaque (posição original) -->
-            <div class="featured-product">
-                <div class="product-card">
-                    <div class="product-image-section">
-                        <img class="brand-logo" src="play-station9.png" alt="PlayStation">
-                        <img class="product-image-large" src="controle-sem-fio-ps-5-dualsense-1598897393-m0.png" alt="Controle PS5">
+    <!-- Container principal -->
+    <div class="app-container">
+        <!-- HEADER Responsivo -->
+        <header class="main-header">
+            <div class="header-top">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-gamepad logo-icon"></i>
+                        <span>NerdHub</span>
                     </div>
                     
-                    <div class="product-details">
-                        <div class="brand-name">Sony</div>
-                        <h1 class="product-title">PlayStation DualSense Controle sem fio – Branco - 3005767</h1>
-                        
-                        <div class="pricing-info">
-                            <div class="price-left">
-                                <div class="price-label">preço a vista no pix:</div>
-                                <div class="price-main">R$ 399,49</div>
+                    <div class="search-wrapper">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" placeholder="O que você está procurando?">
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="header-btn" aria-label="Perfil">
+                            <i class="fas fa-user"></i>
+                            <span class="btn-label">Perfil</span>
+                        </button>
+                        <button class="header-btn cart-btn" aria-label="Carrinho">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="btn-label">Carrinho</span>
+                            <span class="cart-count">6</span>
+                        </button>
+                        <button class="mobile-menu-btn" aria-label="Menu">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <a href="#" class="nav-link active">Principal</a>
+                <a href="#" class="nav-link">Sobre Nós</a>
+                <a href="#" class="nav-link">Suporte</a>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- Layout responsivo -->
+            <div class="cart-grid">
+                <!-- Coluna esquerda - Itens do carrinho -->
+                <section class="cart-items-section">
+                    <div class="section-header">
+                        <h1 class="section-title">Meu Carrinho</h1>
+                        <span class="items-count">6 itens</span>
+                    </div>
+                    
+                    <div class="cart-items-list">
+                        <!-- Item 1 -->
+                        <article class="cart-item">
+                            <div class="item-media">
+                                <div class="item-brand">
+                                    <img src="play-station7.png" alt="PlayStation" class="brand-icon">
+                                </div>
+                                <img src="_51-pme-lg-ek-ml-ac-sx-679-20.png" alt="Controle PS5" class="item-image">
                             </div>
                             
-                            <div class="price-right">
-                                <div class="payment-detail">
-                                    <span class="payment-label">com desconto no pix:</span>
-                                    <span class="payment-value">R$ 464,07</span>
+                            <div class="item-content">
+                                <h3 class="item-title">PlayStation DualSense Controle sem fio – Branco</h3>
+                                <div class="item-meta">
+                                    <span class="item-brand-name">Sony</span>
+                                    <div class="item-price">R$ 399,49</div>
                                 </div>
-                                <div class="payment-detail">
-                                    <span class="payment-label">Parcelado no cartão sem juros:</span>
-                                    <span class="payment-value">R$ 499,00</span>
+                                <div class="item-quantity">
+                                    <span class="quantity-label">Quantidade:</span>
+                                    <div class="quantity-control">
+                                        <button class="qty-btn minus" aria-label="Diminuir quantidade">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span class="qty-value">1</span>
+                                        <button class="qty-btn plus" aria-label="Aumentar quantidade">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <button class="item-remove-btn" aria-label="Remover item">
+                                <i class="fas fa-trash"></i>
+                                <span>Remover</span>
+                            </button>
+                        </article>
+
+                        <!-- Item 2 -->
+                        <article class="cart-item">
+                            <div class="item-media">
+                                <div class="item-brand">
+                                    <img src="xbox0.png" alt="Xbox" class="brand-icon">
+                                </div>
+                                <img src="_71-q-kdn-oo-6-l-ac-sx-679-20.png" alt="Halo Figure" class="item-image">
+                            </div>
+                            
+                            <div class="item-content">
+                                <h3 class="item-title">Pop Halo Infinite Master Chief Vinyl Figure</h3>
+                                <div class="item-meta">
+                                    <span class="item-brand-name">Microsoft</span>
+                                    <div class="item-price">R$ 399,49</div>
+                                </div>
+                                <div class="item-quantity">
+                                    <span class="quantity-label">Quantidade:</span>
+                                    <div class="quantity-control">
+                                        <button class="qty-btn minus" aria-label="Diminuir quantidade">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span class="qty-value">2</span>
+                                        <button class="qty-btn plus" aria-label="Aumentar quantidade">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="item-remove-btn" aria-label="Remover item">
+                                <i class="fas fa-trash"></i>
+                                <span>Remover</span>
+                            </button>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Coluna direita - Produto principal e similares -->
+                <div class="sidebar">
+                    <!-- Produto em Destaque -->
+                    <section class="featured-product">
+                        <div class="product-card">
+                            <div class="product-header">
+                                <div class="product-brand">
+                                    <img src="play-station9.png" alt="PlayStation" class="brand-logo">
+                                    <span class="brand-name">Sony</span>
+                                </div>
+                            </div>
+                            
+                            <div class="product-image-container">
+                                <img src="controle-sem-fio-ps-5-dualsense-1598897393-m0.png" alt="Controle PS5" class="product-image">
+                            </div>
+                            
+                            <div class="product-info">
+                                <h2 class="product-title">PlayStation DualSense Controle sem fio – Branco - 3005767</h2>
+                                
+                                <div class="pricing-section">
+                                    <div class="main-price">
+                                        <span class="price-label">Preço à vista (PIX):</span>
+                                        <span class="price-value">R$ 399,49</span>
+                                    </div>
+                                    
+                                    <div class="payment-options">
+                                        <div class="payment-option">
+                                            <i class="fas fa-barcode"></i>
+                                            <span>PIX: R$ 464,07</span>
+                                        </div>
+                                        <div class="payment-option">
+                                            <i class="far fa-credit-card"></i>
+                                            <span>12x R$ 41,58</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="quantity-section">
+                                    <span class="quantity-label">Quantidade:</span>
+                                    <div class="quantity-stepper">
+                                        <button class="stepper-btn minus" aria-label="Diminuir">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span class="stepper-value">1</span>
+                                        <button class="stepper-btn plus" aria-label="Aumentar">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Produtos Similares -->
+                    <section class="similar-products">
+                        <div class="section-header">
+                            <h2 class="section-title">Produtos Similares</h2>
+                            <button class="view-all-btn">Ver todos</button>
                         </div>
                         
-                        <div class="quantity-selector">
-                            <div class="stepper">
-                                <button class="stepper-btn decrement">-</button>
-                                <div class="separator"></div>
-                                <button class="stepper-btn increment">+</button>
+                        <div class="products-container">
+                            <div class="products-grid">
+                                <!-- Produto 1 -->
+                                <div class="product-card">
+                                    <div class="product-badge">20% OFF</div>
+                                    <div class="product-image-container">
+                                        <img src="dualsense-3-zmwab-5-uu-82-10.png" alt="Controle PS5" class="product-image">
+                                        <div class="brand-overlay">
+                                            <img src="play-station0.png" alt="PlayStation" class="brand-icon">
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="product-name">Controle PS5 Edição Limitada Aniversário de 30 Anos - Sony</h3>
+                                        <div class="product-pricing">
+                                            <span class="old-price">R$ 1.687,49</span>
+                                            <span class="current-price">R$ 1.349,99</span>
+                                        </div>
+                                        <button class="add-to-cart-btn">
+                                            <i class="fas fa-plus"></i>
+                                            Adicionar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Produto 2 -->
+                                <div class="product-card">
+                                    <div class="product-badge">20% OFF</div>
+                                    <div class="product-image-container">
+                                        <img src="controle-sony-dualsense-ps-5-sem-fio-chroma-indigo-1762779753-m0.png" alt="Controle PS5" class="product-image">
+                                        <div class="brand-overlay">
+                                            <img src="play-station1.png" alt="PlayStation" class="brand-icon">
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="product-name">Console PlayStation®5 Pro</h3>
+                                        <div class="product-pricing">
+                                            <span class="old-price">R$ 464,89</span>
+                                            <span class="current-price">R$ 371,91</span>
+                                        </div>
+                                        <button class="add-to-cart-btn">
+                                            <i class="fas fa-plus"></i>
+                                            Adicionar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Produto 3 -->
+                                <div class="product-card">
+                                    <div class="product-badge">20% OFF</div>
+                                    <div class="product-image-container">
+                                        <img src="controle-sem-fio-sony-ps-5-dualsense-galactic-purple-3006456-1639498915-m0.png" alt="Controle PS5" class="product-image">
+                                        <div class="brand-overlay">
+                                            <img src="play-station2.png" alt="PlayStation" class="brand-icon">
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="product-name">Controle Sony DualSense PS5, Sem Fio Galactic Purple - 3006456</h3>
+                                        <div class="product-pricing">
+                                            <span class="old-price">R$ 450,94</span>
+                                            <span class="current-price">R$ 360,75</span>
+                                        </div>
+                                        <button class="add-to-cart-btn">
+                                            <i class="fas fa-plus"></i>
+                                            Adicionar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Produto 4 -->
+                                <div class="product-card">
+                                    <div class="product-badge">20% OFF</div>
+                                    <div class="product-image-container">
+                                        <img src="controle-sem-fio-sony-ps-5-dualsense-starlight-blue-3006454-1639496265-m0.png" alt="Controle PS5" class="product-image">
+                                        <div class="brand-overlay">
+                                            <img src="play-station3.png" alt="PlayStation" class="brand-icon">
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="product-name">Controle Sony DualSense PS5, Sem Fio, Starlight Blue</h3>
+                                        <div class="product-pricing">
+                                            <span class="old-price">R$ 464,89</span>
+                                            <span class="current-price">R$ 371,91</span>
+                                        </div>
+                                        <button class="add-to-cart-btn">
+                                            <i class="fas fa-plus"></i>
+                                            Adicionar
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
+        </main>
 
-            <!-- Lista de Itens do Carrinho (scroll melhorado) -->
-            <div class="cart-items-container">
-                <div class="cart-items-wrapper">
-                    <!-- Item 1 -->
-                    <div class="cart-item">
-                        <div class="item-brand">
-                            <img src="play-station7.png" alt="PlayStation">
-                        </div>
-                        <div class="item-image">
-                            <img src="_51-pme-lg-ek-ml-ac-sx-679-20.png" alt="Controle PS5">
-                        </div>
-                        <div class="item-info">
-                            <h3>PlayStation DualSense Controle sem fio – Branco</h3>
-                            <div class="item-price">R$ 399,49</div>
-                            <div class="item-quantity-label">QTD PRODUTO 1</div>
-                        </div>
-                        <button class="remove-btn">Remover</button>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="cart-item">
-                        <div class="item-brand">
-                            <img src="xbox0.png" alt="Xbox">
-                        </div>
-                        <div class="item-image">
-                            <img src="_71-q-kdn-oo-6-l-ac-sx-679-20.png" alt="Halo Figure">
-                        </div>
-                        <div class="item-info">
-                            <h3>Pop Halo Infinite Master Chief Vinyl Figure</h3>
-                            <div class="item-price">R$ 399,49</div>
-                            <div class="item-quantity-label">QTD PRODUTO 2</div>
-                        </div>
-                        <button class="remove-btn">Remover</button>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="cart-item">
-                        <div class="item-brand">
-                            <img src="xbox1.png" alt="Xbox">
-                        </div>
-                        <div class="item-image">
-                            <img src="_618-o-os-ly-pjs-ac-sx-679-10.png" alt="Headset Xbox">
-                        </div>
-                        <div class="item-info">
-                            <h3>Headset Xbox - Sem fio</h3>
-                            <div class="item-price">R$ 269,93</div>
-                            <div class="item-quantity-label">QTD PRODUTO 1</div>
-                        </div>
-                        <button class="remove-btn">Remover</button>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="cart-item">
-                        <div class="item-brand">
-                            <img src="marvel0.png" alt="Marvel">
-                        </div>
-                        <div class="item-image">
-                            <img src="_1408873-800-auto0.png" alt="Captain America">
-                        </div>
-                        <div class="item-info">
-                            <h3>Pop! Captain America (Sam Wilson) (Flying)</h3>
-                            <div class="item-price">R$ 269,93</div>
-                            <div class="item-quantity-label">QTD PRODUTO 1</div>
-                        </div>
-                        <button class="remove-btn">Remover</button>
-                    </div>
-
-                    <!-- Item 5 -->
-                    <div class="cart-item">
-                        <div class="item-brand">
-                            <img src="disney0.png" alt="Disney">
-                        </div>
-                        <div class="item-image">
-                            <img src="_618-lk-yll-7-kl-ac-sx-300-sy-300-ql-70-ml-2-10.png" alt="Stitch">
-                        </div>
-                        <div class="item-info">
-                            <h3>Pop Lilo and Stitch Smiling Seated Stitch Vinyl Figure</h3>
-                            <div class="item-price">R$ 179,00</div>
-                            <div class="item-quantity-label">QTD PRODUTO 2</div>
-                        </div>
-                        <button class="remove-btn">Remover</button>
-                    </div>
-
-                    <!-- Item 6 -->
-                    <div class="cart-item">
-                        <div class="item-brand">
-                            <img src="play-station8.png" alt="PlayStation">
-                        </div>
-                        <div class="item-image">
-                            <img src="_81-snw-iy-j-di-l-ac-sx-679-10.png" alt="Astro Bot">
-                        </div>
-                        <div class="item-info">
-                            <h3>ASTRO BOT – PS5</h3>
-                            <div class="item-price">R$ 269,93</div>
-                            <div class="item-quantity-label">QTD PRODUTO 1</div>
-                        </div>
-                        <button class="remove-btn">Remover</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Produtos Similares -->
-            <div class="similar-products">
-                <div class="section-title">Produtos Similares:</div>
-                <div class="products-carousel">
-                    <!-- Produto 1 -->
-                    <div class="product-card-small">
-                        <div class="discount-badge">20% OFF</div>
-                        <div class="card-background"></div>
-                        <img class="product-img" src="dualsense-3-zmwab-5-uu-82-10.png" alt="Controle PS5">
-                        <img class="brand-icon" src="play-station0.png" alt="PlayStation">
-                        <h4>Controle PS5 Edição Limitada Aniversário de 30 Anos - Sony</h4>
-                        <div class="product-price">R$ 1.349,99</div>
-                    </div>
-
-                    <!-- Produto 2 -->
-                    <div class="product-card-small">
-                        <div class="discount-badge">20% OFF</div>
-                        <div class="card-background"></div>
-                        <img class="product-img" src="controle-sony-dualsense-ps-5-sem-fio-chroma-indigo-1762779753-m0.png" alt="Controle PS5">
-                        <img class="brand-icon" src="play-station1.png" alt="PlayStation">
-                        <h4>Console PlayStation®5 Pro</h4>
-                        <div class="product-price">R$ 371,91</div>
-                    </div>
-
-                    <!-- Produto 3 -->
-                    <div class="product-card-small">
-                        <div class="discount-badge">20% OFF</div>
-                        <div class="card-background"></div>
-                        <img class="product-img" src="controle-sem-fio-sony-ps-5-dualsense-galactic-purple-3006456-1639498915-m0.png" alt="Controle PS5">
-                        <img class="brand-icon" src="play-station2.png" alt="PlayStation">
-                        <h4>Controle Sony DualSense PS5, Sem Fio Galactic Purple - 3006456</h4>
-                        <div class="product-price">R$ 360,75</div>
-                    </div>
-
-                    <!-- Produto 4 -->
-                    <div class="product-card-small">
-                        <div class="discount-badge">20% OFF</div>
-                        <div class="card-background"></div>
-                        <img class="product-img" src="controle-sem-fio-sony-ps-5-dualsense-starlight-blue-3006454-1639496265-m0.png" alt="Controle PS5">
-                        <img class="brand-icon" src="play-station3.png" alt="PlayStation">
-                        <h4>Controle Sony DualSense PS5, Sem Fio, Starlight Blue</h4>
-                        <div class="product-price">R$ 371,91</div>
-                    </div>
-
-                    <!-- Produto 5 -->
-                    <div class="product-card-small">
-                        <div class="discount-badge">20% OFF</div>
-                        <div class="card-background"></div>
-                        <img class="product-img" src="controle-sony-dualsense-ps-5-sem-fio-midnight-black-1762781772-m0.png" alt="Controle PS5">
-                        <img class="brand-icon" src="play-station4.png" alt="PlayStation">
-                        <h4>Controle Sony DualSense PS5, Sem Fio, Midnight Black</h4>
-                        <div class="product-price">R$ 371,91</div>
-                    </div>
-
-                    <!-- Produto 6 -->
-                    <div class="product-card-small">
-                        <div class="discount-badge">20% OFF</div>
-                        <div class="card-background"></div>
-                        <img class="product-img" src="group-1560.svg" alt="PlayStation Portal">
-                        <img class="brand-icon" src="play-station5.png" alt="PlayStation">
-                        <h4>PlayStation Portal™ Reprodutor Remoto</h4>
-                        <div class="product-price">R$ 1.549,99</div>
-                    </div>
-
-                    <!-- Produto 7 -->
-                    <div class="product-card-small">
-                        <div class="discount-badge">20% OFF</div>
-                        <div class="card-background"></div>
-                        <img class="product-img" src="_51-dfg-52-k-c-l-ac-sy-300-sx-300-ql-70-ml-2-10.png" alt="Console PS5">
-                        <img class="brand-icon" src="play-station6.png" alt="PlayStation">
-                        <h4>Console PlayStation®5 Pro</h4>
-                        <div class="product-price">R$ 6.509,00</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FOOTER (posicionamento original) -->
-        <div class="footer">
-            <div class="footer-content">
-                <div class="footer-sections">
-                    <div class="footer-section">
-                        <h3 class="section-title">Nerd Hub</h3>
-                        <p class="section-text">
-                            Sua loja de confiança para produtos de alta qualidade e<br>
-                            atendimento excepcional.
+        <!-- FOOTER Responsivo -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h3 class="footer-title">
+                            <i class="fas fa-gamepad"></i>
+                            Nerd Hub
+                        </h3>
+                        <p class="footer-description">
+                            Sua loja de confiança para produtos de alta qualidade e atendimento excepcional.
                         </p>
                     </div>
                     
-                    <div class="footer-section">
-                        <h3 class="section-title">Links Rápidos</h3>
-                        <div class="footer-links">
-                            <div class="footer-link">Principal</div>
-                            <div class="footer-link">Sobre Nós</div>
-                            <div class="footer-link">Loja</div>
-                            <div class="footer-link">Suporte</div>
-                        </div>
+                    <div class="footer-column">
+                        <h3 class="footer-title">Links Rápidos</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" class="footer-link">Principal</a></li>
+                            <li><a href="#" class="footer-link">Sobre Nós</a></li>
+                            <li><a href="#" class="footer-link">Loja</a></li>
+                            <li><a href="#" class="footer-link">Suporte</a></li>
+                        </ul>
                     </div>
                     
-                    <div class="footer-section">
-                        <h3 class="section-title">Categorias</h3>
-                        <div class="footer-links">
-                            <div class="footer-link">Colecionáveis</div>
-                            <div class="footer-link">Games</div>
-                            <div class="footer-link">Acessórios</div>
-                            <div class="footer-link">Vestuário</div>
-                        </div>
+                    <div class="footer-column">
+                        <h3 class="footer-title">Categorias</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" class="footer-link">Colecionáveis</a></li>
+                            <li><a href="#" class="footer-link">Games</a></li>
+                            <li><a href="#" class="footer-link">Acessórios</a></li>
+                            <li><a href="#" class="footer-link">Vestuário</a></li>
+                        </ul>
                     </div>
                     
-                    <div class="footer-section">
-                        <h3 class="section-title">Redes Sociais</h3>
+                    <div class="footer-column">
+                        <h3 class="footer-title">Redes Sociais</h3>
                         <div class="social-icons">
-                            <div class="social-icon">
-                                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-                            </div>
-                            <div class="social-icon">
-                                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-                            </div>
-                            <div class="social-icon">
-                                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384012.png" alt="Twitter">
-                            </div>
+                            <a href="#" class="social-icon" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="footer-divider"></div>
-                <div class="footer-copyright">
-                    © 2024 Nerd Hub. Todos os direitos reservados.
+                <div class="footer-bottom">
+                    <p class="copyright">
+                        <i class="far fa-copyright"></i>
+                        2024 Nerd Hub. Todos os direitos reservados.
+                    </p>
                 </div>
             </div>
-        </div>
+        </footer>
     </div>
 
     <script>
-        // Interatividade básica mantendo funcionalidades
-        document.querySelectorAll('.remove-btn').forEach(btn => {
+        // Menu mobile
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+        
+        mobileMenuBtn?.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Controle de quantidade
+        document.querySelectorAll('.qty-btn, .stepper-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const isMinus = this.classList.contains('minus');
+                const valueElement = this.parentElement.querySelector('.qty-value, .stepper-value');
+                let value = parseInt(valueElement.textContent);
+                
+                if (isMinus && value > 1) {
+                    value--;
+                } else if (!isMinus) {
+                    value++;
+                }
+                
+                valueElement.textContent = value;
+            });
+        });
+        
+        // Remover itens
+        document.querySelectorAll('.item-remove-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const cartItem = this.closest('.cart-item');
-                cartItem.style.opacity = '0.5';
+                cartItem.style.transform = 'translateX(100%)';
+                cartItem.style.opacity = '0';
+                
                 setTimeout(() => {
                     cartItem.remove();
+                    updateCartCount();
                 }, 300);
             });
         });
-
-        // Controle de quantidade
-        const decrementBtn = document.querySelector('.decrement');
-        const incrementBtn = document.querySelector('.increment');
-        const priceElement = document.querySelector('.price-main');
         
-        let quantity = 1;
-        const basePrice = 399.49;
-        
-        if (decrementBtn && incrementBtn) {
-            decrementBtn.addEventListener('click', () => {
-                if (quantity > 1) {
-                    quantity--;
-                    updatePrice();
-                }
+        // Adicionar ao carrinho
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.innerHTML = '<i class="fas fa-check"></i> Adicionado';
+                this.style.backgroundColor = 'var(--primary-green)';
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-plus"></i> Adicionar';
+                    this.style.backgroundColor = '';
+                }, 2000);
+                
+                updateCartCount();
             });
+        });
+        
+        function updateCartCount() {
+            const items = document.querySelectorAll('.cart-item');
+            const countElement = document.querySelector('.cart-count');
+            const itemsCount = document.querySelector('.items-count');
             
-            incrementBtn.addEventListener('click', () => {
-                quantity++;
-                updatePrice();
-            });
-        }
-        
-        function updatePrice() {
-            const total = (basePrice * quantity).toFixed(2);
-            if (priceElement) {
-                priceElement.textContent = `R$ ${total.replace('.', ',')}`;
+            if (countElement) {
+                countElement.textContent = items.length;
+            }
+            if (itemsCount) {
+                itemsCount.textContent = `${items.length} ${items.length === 1 ? 'item' : 'itens'}`;
             }
         }
     </script>
