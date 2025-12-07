@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nerd Hub - Configurações de Segurança</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="header__top-content">
+                    <h1 class="logo">
+                        <a href="/" aria-label="Nerd Hub - Página inicial">
+                            <i class="fas fa-gamepad"></i> NerDHub
+                        </a>
+                    </h1>
+                    
+                    <div class="header__search">
+                        <form class="search-form">
+                            <input 
+                                type="search" 
+                                class="search-input" 
+                                placeholder="O que você está procurando?" 
+                                aria-label="Buscar produtos"
+                            >
+                            <button type="submit" class="search-button" aria-label="Buscar">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="header__actions">
+                        <button class="header__action" aria-label="Carrinho de compras">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">3</span>
+                        </button>
+                        <button class="header__action" aria-label="Perfil do usuário">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header__bottom">
+            <div class="container">
+                <nav class="main-nav" aria-label="Navegação principal">
+                    <ul class="main-nav__list">
+                        <li class="main-nav__item">
+                            <a href="/" class="main-nav__link">
+                                <i class="fas fa-home"></i> Principal
+                            </a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="/sobre" class="main-nav__link">
+                                <i class="fas fa-info-circle"></i> Sobre Nós
+                            </a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a href="/suporte" class="main-nav__link">
+                                <i class="fas fa-headset"></i> Suporte
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="layout">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <h2 class="sidebar__title">
+                        <i class="fas fa-cog"></i> Configurações
+                    </h2>
+                    
+                    <nav class="sidebar__nav" aria-label="Navegação de configurações">
+                        <ul class="sidebar__list">
+                            <li class="sidebar__item">
+                                <a href="/perfil" class="sidebar__link">
+                                    <i class="sidebar__icon fas fa-user"></i>
+                                    <span>Perfil</span>
+                                </a>
+                            </li>
+                            
+                            <li class="sidebar__item sidebar__item--active">
+                                <a href="/seguranca" class="sidebar__link">
+                                    <i class="sidebar__icon fas fa-shield-alt"></i>
+                                    <span>Segurança</span>
+                                </a>
+                            </li>
+                            
+                            <li class="sidebar__item">
+                                <a href="/endereco" class="sidebar__link">
+                                    <i class="sidebar__icon fas fa-map-marker-alt"></i>
+                                    <span>Endereço</span>
+                                </a>
+                            </li>
+                            
+                            <li class="sidebar__item">
+                                <a href="/preferencias" class="sidebar__link">
+                                    <i class="sidebar__icon fas fa-sliders-h"></i>
+                                    <span>Preferências</span>
+                                </a>
+                            </li>
+                            
+                            <li class="sidebar__item">
+                                <a href="/privacidade" class="sidebar__link">
+                                    <i class="sidebar__icon fas fa-lock"></i>
+                                    <span>Privacidade</span>
+                                </a>
+                            </li>
+                            
+                            <li class="sidebar__item">
+                                <a href="/conta" class="sidebar__link">
+                                    <i class="sidebar__icon fas fa-user-circle"></i>
+                                    <span>Conta</span>
+                                </a>
+                            </li>
+                            
+                            <li class="sidebar__item sidebar__item--support">
+                                <a href="/suporte" class="sidebar__link">
+                                    <i class="fas fa-comments"></i>
+                                    <span>Chat Suporte</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Content Area -->
+                <div class="content">
+                    <div class="content__card">
+                        <h2 class="content__title">
+                            <i class="fas fa-shield-alt"></i> Segurança
+                        </h2>
+                        
+                        <!-- Change Password Section -->
+                        <section class="password-section" aria-labelledby="password-title">
+                            <h3 id="password-title" class="password-section__title">
+                                Alterar Senha
+                            </h3>
+                            
+                            <form class="password-form" id="password-form">
+                                <div class="form-group">
+                                    <label for="current-password" class="form-label">
+                                        Senha Atual
+                                    </label>
+                                    <div class="input-wrapper">
+                                        <input 
+                                            type="password" 
+                                            id="current-password" 
+                                            class="form-input"
+                                            placeholder="Digite sua senha atual"
+                                            required
+                                            minlength="6"
+                                        >
+                                        <button type="button" class="password-toggle" aria-label="Mostrar senha">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="form-hint" id="current-password-hint">
+                                        Digite sua senha atual para confirmar sua identidade.
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="new-password" class="form-label">
+                                        Nova Senha
+                                    </label>
+                                    <div class="input-wrapper">
+                                        <input 
+                                            type="password" 
+                                            id="new-password" 
+                                            class="form-input"
+                                            placeholder="Digite sua nova senha"
+                                            required
+                                            minlength="8"
+                                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+                                        >
+                                        <button type="button" class="password-toggle" aria-label="Mostrar senha">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="form-hint" id="new-password-hint">
+                                        Mínimo 8 caracteres, incluindo maiúsculas, minúsculas e números.
+                                    </div>
+                                    <div class="password-strength">
+                                        <div class="strength-bar"></div>
+                                        <span class="strength-text">Força da senha: <span id="strength-value">Fraca</span></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirm-password" class="form-label">
+                                        Confirmar Nova Senha
+                                    </label>
+                                    <div class="input-wrapper">
+                                        <input 
+                                            type="password" 
+                                            id="confirm-password" 
+                                            class="form-input"
+                                            placeholder="Confirme sua nova senha"
+                                            required
+                                        >
+                                        <button type="button" class="password-toggle" aria-label="Mostrar senha">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="form-hint" id="confirm-password-hint">
+                                        Digite novamente a nova senha para confirmar.
+                                    </div>
+                                    <div class="password-match" id="password-match">
+                                        <i class="fas fa-check-circle"></i> As senhas coincidem
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn--primary">
+                                        <i class="fas fa-save"></i> Salvar Alterações
+                                    </button>
+                                    <button type="reset" class="btn btn--secondary">
+                                        <i class="fas fa-redo"></i> Limpar
+                                    </button>
+                                </div>
+                            </form>
+                        </section>
+
+                        <div class="divider" aria-hidden="true"></div>
+
+                        <!-- Active Sessions Section -->
+                        <section class="sessions-section" aria-labelledby="sessions-title">
+                            <h3 id="sessions-title" class="sessions-section__title">
+                                Sessões Ativas
+                            </h3>
+                            
+                            <div class="session-list">
+                                <article class="session-card session-card--current">
+                                    <div class="session-card__device">
+                                        <div class="session-card__device-icon">
+                                            <i class="fas fa-desktop"></i>
+                                        </div>
+                                        <div class="session-card__device-info">
+                                            <h4 class="session-card__device-name">
+                                                Chrome - Windows 11
+                                            </h4>
+                                            <p class="session-card__location">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                Distrito Federal, Brasil
+                                            </p>
+                                            <p class="session-card__time">
+                                                <i class="fas fa-clock"></i>
+                                                Ativo agora
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="session-card__status">
+                                        <span class="status-badge status-badge--active">
+                                            <span class="status-badge__dot" aria-hidden="true"></span>
+                                            Atual
+                                        </span>
+                                    </div>
+                                </article>
+                                
+                                <article class="session-card">
+                                    <div class="session-card__device">
+                                        <div class="session-card__device-icon">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                        <div class="session-card__device-info">
+                                            <h4 class="session-card__device-name">
+                                                iPhone 14 Pro - Safari
+                                            </h4>
+                                            <p class="session-card__location">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                São Paulo, Brasil
+                                            </p>
+                                            <p class="session-card__time">
+                                                <i class="fas fa-clock"></i>
+                                                2 horas atrás
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button class="session-card__action btn btn--text" aria-label="Encerrar sessão">
+                                        <i class="fas fa-sign-out-alt"></i> Encerrar
+                                    </button>
+                                </article>
+                                
+                                <article class="session-card">
+                                    <div class="session-card__device">
+                                        <div class="session-card__device-icon">
+                                            <i class="fas fa-tablet-alt"></i>
+                                        </div>
+                                        <div class="session-card__device-info">
+                                            <h4 class="session-card__device-name">
+                                                iPad Air - Chrome
+                                            </h4>
+                                            <p class="session-card__location">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                Rio de Janeiro, Brasil
+                                            </p>
+                                            <p class="session-card__time">
+                                                <i class="fas fa-clock"></i>
+                                                1 dia atrás
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button class="session-card__action btn btn--text" aria-label="Encerrar sessão">
+                                        <i class="fas fa-sign-out-alt"></i> Encerrar
+                                    </button>
+                                </article>
+                            </div>
+                            
+                            <div class="sessions-info">
+                                <p>
+                                    <i class="fas fa-info-circle"></i>
+                                    Estas são as sessões ativas da sua conta. Se você reconhece todas, sua conta está segura.
+                                </p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <!-- Brand Column -->
+                <div class="footer__column">
+                    <h3 class="footer__title">
+                        <i class="fas fa-gamepad"></i> Nerd Hub
+                    </h3>
+                    <p class="footer__description">
+                        Sua loja de confiança para produtos de alta qualidade e atendimento excepcional.
+                    </p>
+                    <div class="footer__contact">
+                        <p><i class="fas fa-envelope"></i> contato@nerdhub.com.br</p>
+                        <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer__column">
+                    <h3 class="footer__title">Links Rápidos</h3>
+                    <ul class="footer__list">
+                        <li class="footer__list-item">
+                            <a href="/" class="footer__link">
+                                <i class="fas fa-chevron-right"></i> Principal
+                            </a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/sobre" class="footer__link">
+                                <i class="fas fa-chevron-right"></i> Sobre Nós
+                            </a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/loja" class="footer__link">
+                                <i class="fas fa-chevron-right"></i> Loja
+                            </a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/suporte" class="footer__link">
+                                <i class="fas fa-chevron-right"></i> Suporte
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="footer__column">
+                    <h3 class="footer__title">Categorias</h3>
+                    <ul class="footer__list">
+                        <li class="footer__list-item">
+                            <a href="/colecionaveis" class="footer__link">
+                                <i class="fas fa-chevron-right"></i> Colecionáveis
+                            </a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/games" class="footer__link">
+                                <i class="fas fa-chevron-right"></i> Games
+                            </a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/acessorios" class="footer__link">
+                                <i class="fas fa-chevron-right"></i> Acessórios
+                            </a>
+                        </li>
+                        <li class="footer__list-item">
+                            <a href="/vestuario" class="footer__link">
+                                <i class="fas fa-chevron-right"></i> Vestuário
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div class="footer__column">
+                    <h3 class="footer__title">Redes Sociais</h3>
+                    <p class="footer__description">
+                        Siga-nos nas redes sociais para ficar por dentro das novidades!
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Seu e-mail" aria-label="Assinar newsletter">
+                            <button type="submit" aria-label="Assinar">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copyright">
+                    © 2024 Nerd Hub. Todos os direitos reservados.
+                </p>
+                <div class="footer__links">
+                    <a href="/privacidade">Política de Privacidade</a>
+                    <a href="/termos">Termos de Uso</a>
+                    <a href="/cookies">Política de Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
