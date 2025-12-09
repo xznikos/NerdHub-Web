@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos - Nerd Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Container principal -->
+    <div class="app-container">
+        <!-- HEADER Responsivo -->
+        <header class="main-header">
+            <div class="header-top">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-gamepad logo-icon"></i>
+                        <span>NerdHub</span>
+                    </div>
+                    
+                    <div class="search-wrapper">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" placeholder="O que você está procurando?">
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="header-btn" aria-label="Perfil">
+                            <i class="fas fa-user"></i>
+                            <span class="btn-label">Perfil</span>
+                        </button>
+                        <button class="header-btn favorites-btn active" aria-label="Favoritos">
+                            <i class="fas fa-heart"></i>
+                            <span class="btn-label">Favoritos</span>
+                            <span class="favorites-count">8</span>
+                        </button>
+                        <button class="header-btn cart-btn" aria-label="Carrinho">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="btn-label">Carrinho</span>
+                            <span class="cart-count">3</span>
+                        </button>
+                        <button class="mobile-menu-btn" aria-label="Menu">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <a href="#" class="nav-link active">Principal</a>
+                <a href="#" class="nav-link">Sobre Nós</a>
+                <a href="#" class="nav-link">Suporte</a>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT CENTRALIZADO -->
+        <main class="main-content">
+            <div class="favorites-container">
+                <!-- Card Centralizado de Favoritos -->
+                <section class="favorites-section">
+                    <div class="section-header">
+                        <div>
+                            <h1 class="section-title">
+                                <i class="fas fa-heart"></i>
+                                Meus Favoritos
+                            </h1>
+                            <p class="section-subtitle">Produtos que você salvou para comprar depois</p>
+                        </div>
+                        <span class="items-count">8 itens</span>
+                    </div>
+                    
+                    <div class="favorites-actions">
+                        <button class="action-btn" id="moveAllToCart">
+                            <i class="fas fa-cart-plus"></i>
+                            Mover tudo para o carrinho
+                        </button>
+                        <button class="action-btn" id="clearAll">
+                            <i class="fas fa-trash-alt"></i>
+                            Limpar tudo
+                        </button>
+                    </div>
+                    
+                    <div class="favorites-grid-container">
+                        <!-- Item 1 -->
+                        <article class="favorite-item">
+                            <div class="favorite-item-header">
+                                <div class="item-brand">
+                                    <img src="play-station7.png" alt="PlayStation" class="brand-logo-small">
+                                    <span class="brand-name">Sony</span>
+                                </div>
+                                <button class="favorite-heart" aria-label="Remover dos favoritos">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="item-media">
+                                <img src="controle-sem-fio-ps-5-dualsense-1598897393-m0.png" alt="Controle PS5" class="item-image">
+                            </div>
+                            
+                            <div class="item-content">
+                                <h3 class="item-title">PlayStation DualSense Controle sem fio – Branco</h3>
+                                
+                                <div class="item-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star-half-alt star"></i>
+                                    </div>
+                                    <span class="rating-value">4.7</span>
+                                </div>
+                                
+                                <div class="item-price-section">
+                                    <span class="item-price">R$ 399,49</span>
+                                    <span class="item-old-price">R$ 464,07</span>
+                                </div>
+                                
+                                <div class="item-actions">
+                                    <button class="cart-action-btn">
+                                        <i class="fas fa-cart-plus"></i>
+                                        Adicionar ao Carrinho
+                                    </button>
+                                    <button class="delete-action-btn" aria-label="Remover">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Item 2 -->
+                        <article class="favorite-item">
+                            <div class="favorite-item-header">
+                                <div class="item-brand">
+                                    <img src="xbox0.png" alt="Xbox" class="brand-logo-small">
+                                    <span class="brand-name">Microsoft</span>
+                                </div>
+                                <button class="favorite-heart" aria-label="Remover dos favoritos">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="item-media">
+                                <img src="_71-q-kdn-oo-6-l-ac-sx-679-20.png" alt="Halo Figure" class="item-image">
+                            </div>
+                            
+                            <div class="item-content">
+                                <h3 class="item-title">Pop Halo Infinite Master Chief Vinyl Figure</h3>
+                                
+                                <div class="item-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                    </div>
+                                    <span class="rating-value">5.0</span>
+                                </div>
+                                
+                                <div class="item-price-section">
+                                    <span class="item-price">R$ 399,49</span>
+                                    <span class="item-old-price">R$ 464,07</span>
+                                </div>
+                                
+                                <div class="item-actions">
+                                    <button class="cart-action-btn">
+                                        <i class="fas fa-cart-plus"></i>
+                                        Adicionar ao Carrinho
+                                    </button>
+                                    <button class="delete-action-btn" aria-label="Remover">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Item 3 -->
+                        <article class="favorite-item">
+                            <div class="favorite-item-header">
+                                <div class="item-brand">
+                                    <img src="play-station7.png" alt="PlayStation" class="brand-logo-small">
+                                    <span class="brand-name">Sony</span>
+                                </div>
+                                <button class="favorite-heart" aria-label="Remover dos favoritos">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="item-media">
+                                <img src="dualsense-3-zmwab-5-uu-82-10.png" alt="Controle PS5 Edição Limitada" class="item-image">
+                            </div>
+                            
+                            <div class="item-content">
+                                <h3 class="item-title">Controle PS5 Edição Limitada Aniversário de 30 Anos</h3>
+                                
+                                <div class="item-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="far fa-star star empty"></i>
+                                    </div>
+                                    <span class="rating-value">4.0</span>
+                                </div>
+                                
+                                <div class="item-price-section">
+                                    <span class="item-price">R$ 1.349,99</span>
+                                    <span class="item-old-price">R$ 1.687,49</span>
+                                </div>
+                                
+                                <div class="item-actions">
+                                    <button class="cart-action-btn">
+                                        <i class="fas fa-cart-plus"></i>
+                                        Adicionar ao Carrinho
+                                    </button>
+                                    <button class="delete-action-btn" aria-label="Remover">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Item 4 -->
+                        <article class="favorite-item">
+                            <div class="favorite-item-header">
+                                <div class="item-brand">
+                                    <img src="play-station7.png" alt="PlayStation" class="brand-logo-small">
+                                    <span class="brand-name">Sony</span>
+                                </div>
+                                <button class="favorite-heart" aria-label="Remover dos favoritos">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="item-media">
+                                <img src="controle-sony-dualsense-ps-5-sem-fio-chroma-indigo-1762779753-m0.png" alt="Controle PS5 Chroma Indigo" class="item-image">
+                            </div>
+                            
+                            <div class="item-content">
+                                <h3 class="item-title">Console PlayStation®5 Pro</h3>
+                                
+                                <div class="item-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star-half-alt star"></i>
+                                    </div>
+                                    <span class="rating-value">4.5</span>
+                                </div>
+                                
+                                <div class="item-price-section">
+                                    <span class="item-price">R$ 371,91</span>
+                                    <span class="item-old-price">R$ 464,89</span>
+                                </div>
+                                
+                                <div class="item-actions">
+                                    <button class="cart-action-btn">
+                                        <i class="fas fa-cart-plus"></i>
+                                        Adicionar ao Carrinho
+                                    </button>
+                                    <button class="delete-action-btn" aria-label="Remover">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- FOOTER Responsivo -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h3 class="footer-title">
+                            <i class="fas fa-gamepad"></i>
+                            Nerd Hub
+                        </h3>
+                        <p class="footer-description">
+                            Sua loja de confiança para produtos de alta qualidade e atendimento excepcional.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3 class="footer-title">Links Rápidos</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" class="footer-link">Principal</a></li>
+                            <li><a href="#" class="footer-link">Sobre Nós</a></li>
+                            <li><a href="#" class="footer-link">Loja</a></li>
+                            <li><a href="#" class="footer-link">Suporte</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3 class="footer-title">Categorias</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" class="footer-link">Colecionáveis</a></li>
+                            <li><a href="#" class="footer-link">Games</a></li>
+                            <li><a href="#" class="footer-link">Acessórios</a></li>
+                            <li><a href="#" class="footer-link">Vestuário</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3 class="footer-title">Redes Sociais</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p class="copyright">
+                        <i class="far fa-copyright"></i>
+                        2024 Nerd Hub. Todos os direitos reservados.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+        
+        mobileMenuBtn?.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Remover dos favoritos
+        document.querySelectorAll('.favorite-heart').forEach(heart => {
+            heart.addEventListener('click', function() {
+                const favoriteItem = this.closest('.favorite-item');
+                this.innerHTML = '<i class="far fa-heart"></i>';
+                this.style.color = 'var(--gray-400)';
+                
+                // Animação de remoção
+                favoriteItem.style.transform = 'scale(0.9)';
+                favoriteItem.style.opacity = '0.5';
+                
+                setTimeout(() => {
+                    favoriteItem.remove();
+                    updateFavoritesCount();
+                    showEmptyStateIfNeeded();
+                }, 300);
+            });
+        });
+        
+        // Adicionar ao carrinho dos itens favoritos
+        document.querySelectorAll('.cart-action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const favoriteItem = this.closest('.favorite-item');
+                const itemName = favoriteItem.querySelector('.item-title').textContent;
+                
+                // Feedback visual
+                this.innerHTML = '<i class="fas fa-check"></i> Adicionado';
+                this.style.backgroundColor = 'var(--dark-green)';
+                
+                // Atualizar contador do carrinho
+                const cartCount = document.querySelector('.cart-count');
+                let currentCount = parseInt(cartCount.textContent);
+                cartCount.textContent = currentCount + 1;
+                
+                // Feedback para o usuário
+                showNotification(`"${itemName}" adicionado ao carrinho!`);
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-cart-plus"></i> Adicionar ao Carrinho';
+                    this.style.backgroundColor = '';
+                }, 2000);
+            });
+        });
+        
+        // Remover item com botão de lixeira
+        document.querySelectorAll('.delete-action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const favoriteItem = this.closest('.favorite-item');
+                favoriteItem.style.transform = 'translateX(100%)';
+                favoriteItem.style.opacity = '0';
+                
+                setTimeout(() => {
+                    favoriteItem.remove();
+                    updateFavoritesCount();
+                    showEmptyStateIfNeeded();
+                }, 300);
+            });
+        });
+        
+        // Ações em massa
+        document.getElementById('moveAllToCart')?.addEventListener('click', function() {
+            const items = document.querySelectorAll('.favorite-item');
+            const cartCount = document.querySelector('.cart-count');
+            let currentCount = parseInt(cartCount.textContent);
+            
+            items.forEach(item => {
+                // Animação de adição ao carrinho
+                item.style.transform = 'translateX(-100%)';
+                item.style.opacity = '0';
+            });
+            
+            // Atualizar contador
+            cartCount.textContent = currentCount + items.length;
+            
+            // Mostrar notificação
+            showNotification(`${items.length} itens movidos para o carrinho!`);
+            
+            // Remover itens após animação
+            setTimeout(() => {
+                items.forEach(item => item.remove());
+                updateFavoritesCount();
+                showEmptyStateIfNeeded();
+            }, 500);
+        });
+        
+        document.getElementById('clearAll')?.addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja remover todos os itens dos favoritos?')) {
+                const items = document.querySelectorAll('.favorite-item');
+                
+                // Animação de remoção
+                items.forEach(item => {
+                    item.style.transform = 'scale(0)';
+                    item.style.opacity = '0';
+                });
+                
+                // Remover itens após animação
+                setTimeout(() => {
+                    items.forEach(item => item.remove());
+                    updateFavoritesCount();
+                    showEmptyStateIfNeeded();
+                    showNotification('Todos os itens foram removidos dos favoritos.');
+                }, 300);
+            }
+        });
+        
+        // Funções utilitárias
+        function updateFavoritesCount() {
+            const items = document.querySelectorAll('.favorite-item');
+            const countElement = document.querySelector('.favorites-count');
+            const itemsCount = document.querySelector('.items-count');
+            
+            if (countElement) {
+                countElement.textContent = items.length;
+            }
+            if (itemsCount) {
+                itemsCount.textContent = `${items.length} ${items.length === 1 ? 'item' : 'itens'}`;
+            }
+        }
+        
+        function showEmptyStateIfNeeded() {
+            const container = document.querySelector('.favorites-grid-container');
+            const items = document.querySelectorAll('.favorite-item');
+            
+            if (items.length === 0) {
+                const emptyState = document.createElement('div');
+                emptyState.className = 'empty-favorites';
+                emptyState.innerHTML = `
+                    <div class="empty-icon">
+                        <i class="far fa-heart"></i>
+                    </div>
+                    <h3 class="empty-title">Sua lista de favoritos está vazia</h3>
+                    <p class="empty-message">
+                        Adicione produtos aos seus favoritos para encontrá-los facilmente mais tarde.
+                        Basta clicar no ícone de coração ❤️ em qualquer produto.
+                    </p>
+                    <button class="cart-action-btn" onclick="window.location.href='/'">
+                        <i class="fas fa-store"></i>
+                        Explorar Produtos
+                    </button>
+                `;
+                
+                // Remover grid container e adicionar empty state
+                container.innerHTML = '';
+                container.appendChild(emptyState);
+                container.style.display = 'flex';
+                container.style.justifyContent = 'center';
+                container.style.alignItems = 'center';
+                container.style.minHeight = '400px';
+            }
+        }
+        
+        function showNotification(message) {
+            // Criar elemento de notificação
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--primary-green);
+                color: white;
+                padding: var(--space-md) var(--space-lg);
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+                transform: translateX(100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                max-width: 300px;
+                font-weight: 600;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animação de entrada
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+                notification.style.opacity = '1';
+            }, 10);
+            
+            // Remover após 3 segundos
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFavoritesCount();
+        });
+    </script>
+</body>
+</html>
